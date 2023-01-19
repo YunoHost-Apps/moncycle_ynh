@@ -1,7 +1,7 @@
-SOURCE_URL=url of app's source
-SOURCE_SUM=sha256 checksum
+SOURCE_URL=https://github.com/jean-io/moncycle.app/archive/655ba524a3bf664c5f230812efc0932dfc5416bc.zip
+SOURCE_SUM=38425dd1668ec2edc6d326973a794977fddf3cceb703f2cebd70674891617a14
 SOURCE_SUM_PRG=sha256sum
-SOURCE_FORMAT=tar.gz
+SOURCE_FORMAT=zip
 SOURCE_IN_SUBDIR=true
 SOURCE_FILENAME=
 SOURCE_EXTRACT=true
