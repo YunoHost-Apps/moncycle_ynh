@@ -137,8 +137,6 @@ ynh_add_config --template="../conf/moncycleapp.cron" --destination="$cron_path"
 chown root: "$cron_path"
 chmod 644 "$cron_path"
 
-exec_occ background:cron
-
 #=================================================
 # SETUP FAIL2BAN
 #=================================================
