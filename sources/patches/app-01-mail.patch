@@ -3,12 +3,12 @@ index f153e3c..d970b56 100644
 --- a/www_data/lib/mail.php
 +++ b/www_data/lib/mail.php
 @@ -18,7 +18,8 @@ function mail_init(){
-        $mail->SMTPAuth   = true;
-        $mail->Username   = SMTP_MAIL;
-        $mail->Password   = SMTP_PASSWORD;
--       $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-+       $mail->SMTPAutoTLS = false;
-+       $mail->SMTPSecure = false;
-        $mail->Port       = SMTP_PORT;
-        $mail->CharSet    = 'UTF-8';
-+
+ 	$mail->SMTPAuth   = true;
+ 	$mail->Username   = SMTP_MAIL;
+ 	$mail->Password   = SMTP_PASSWORD;
+-	$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
++	$mail->SMTPAutoTLS = false;
++	$mail->SMTPSecure = false;
+ 	$mail->Port       = SMTP_PORT;
+ 	$mail->CharSet    = 'UTF-8';
+ 
