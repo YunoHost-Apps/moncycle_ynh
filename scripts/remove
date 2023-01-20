@@ -27,6 +27,13 @@ final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 #=================================================
 
 #=================================================
+# REMOVE THE CRON FILE
+#=================================================
+
+# Remove a cron file
+ynh_secure_remove --file="/etc/cron.d/$app"
+
+#=================================================
 # REMOVE THE MYSQL DATABASE
 #=================================================
 ynh_script_progression --message="Removing the MySQL database..." --weight=1

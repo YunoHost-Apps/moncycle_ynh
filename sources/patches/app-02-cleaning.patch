@@ -1,0 +1,106 @@
+diff --git a/.gitignore b/.gitignore
+deleted file mode 100644
+index 1a3237c..0000000
+--- a/.gitignore
++++ /dev/null
+@@ -1,7 +0,0 @@
+-docker-compose.yml
+-www_data/config.php
+-www_data/info.php
+-htpasswd
+-sessions
+-www_data/module
+-
+diff --git a/Dockerfile b/Dockerfile
+deleted file mode 100644
+index 164b163..0000000
+--- a/Dockerfile
++++ /dev/null
+@@ -1,19 +0,0 @@
+-FROM php:apache
+-
+-RUN apt-get update \
+-    && apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev  unzip \
+-    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+-    && docker-php-ext-install -j$(nproc) gd pdo pdo_mysql
+-
+-#RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
+-RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+-
+-COPY ./server_conf/moncycleapp_apache.conf /etc/apache2/conf-enabled/
+-COPY ./server_conf/moncycleapp_php.ini $PHP_INI_DIR/conf.d
+-
+-RUN mkdir -p /var/lib/php/session && mkdir -p /var/lib/php/soap_cache && chown -R www-data:www-data /var/lib/php/
+-
+-COPY ./www_data /var/www/html/
+-
+-RUN bash /var/www/html/module/install.sh
+-
+diff --git a/README.md b/README.md
+deleted file mode 100644
+index 9d22bd5..0000000
+--- a/README.md
++++ /dev/null
+@@ -1,20 +0,0 @@
+-# MONCYCLE.APP
+-
+-Application de suivi de cycle menstruel pour les méthodes naturelles de régulation de naissance.
+-
+-Plus d'information 👉 [https://moncycle.app](https://moncycle.app)
+-
+-Code source 👉 [https://github.com/jean-io/moncycle.app](https://github.com/jean-io/moncycle.app)
+-
+-Page Tipeee 👉 [https://fr.tipeee.com/moncycleapp](https://fr.tipeee.com/moncycleapp)
+-
+-### Licence
+-
+-Creative Commons **CC BY-NC-SA**
+-
+-Attribution - Utilisation non commerciale - Partage dans les mêmes conditions
+-
+-Détail de la licence 👉 [https://creativecommons.org/licenses/by-nc-sa/4.0/](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+-
+-Code légal 👉 [https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.fr](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.fr)
+-
+diff --git a/server_conf/moncycleapp_apache.conf b/server_conf/moncycleapp_apache.conf
+deleted file mode 100644
+index cb5ff31..0000000
+--- a/server_conf/moncycleapp_apache.conf
++++ /dev/null
+@@ -1,5 +0,0 @@
+-<Directory /var/www/>
+-   Options +MultiViews
+-   MultiviewsMatch Any
+-        AllowOverride None
+-</Directory>
+diff --git a/server_conf/moncycleapp_php.ini b/server_conf/moncycleapp_php.ini
+deleted file mode 100644
+index 092dd23..0000000
+--- a/server_conf/moncycleapp_php.ini
++++ /dev/null
+@@ -1,25 +0,0 @@
+-session.name = MONCYCLEAPP_SESID
+-session.cookie_httponly = 1
+-session.cookie_secure = 1
+-session.use_strict_mode = 1
+-session.use_cookies = 1
+-session.use_only_cookies = 1
+-
+-; sessions de 30 jours
+-session.gc_maxlifetime = 2592000
+-session.cookie_lifetime = 2592000
+-
+-; hardening
+-expose_php = Off
+-allow_url_fopen = Off
+-allow_url_include = Off
+-max_input_time = 30
+-max_execution_time = 30
+-memory_limit = 16M
+-post_max_size = 256K
+-max_input_vars = 100
+-file_uploads = Off
+-open_basedir = /var/www/html:/var/lib/php/session
+-session.save_path = /var/lib/php/session
+-soap.wsdl_cache_dir = /var/lib/php/soap_cache
+-disable_functions = ini_set,php_uname,getmyuid,getmypid,passthru,leak,listen,diskfreespace,tmpfile,link,ignore_user_abord,shell_exec,dl,set_time_limit,exec,system,highlight_file,source,show_source,fpaththru,virtual,posix_ctermid,posix_getcwd,posix_getegid,posix_geteuid,posix_getgid,posix_getgrgid,posix_getgrnam,posix_getgroups,posix_getlogin,posix_getpgid,posix_getpgrp,posix_getpid,posix,_getppid,posix_getpwnam,posix_getpwuid,posix_getrlimit,posix_getsid,posix_getuid,posix_isatty,posix_kill,posix_mkfifo,posix_setegid,posix_seteuid,posix_setgid,posix_setpgid,posix_setsid,posix_setuid,posix_times,posix_ttyname,posix_uname,proc_open,proc_close,proc_get_status,proc_nice,proc_terminate,phpinfo,popen,curl_exec,curl_multi_exec,parse_ini_file,allow_url_fopen,allow_url_include,pcntl_exec,chgrp,chmod,chown,lchgrp,lchown,putenv
