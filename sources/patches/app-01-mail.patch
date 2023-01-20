@@ -11,4 +11,4 @@ index f153e3c..d970b56 100644
 +       $mail->SMTPSecure = false;
         $mail->Port       = SMTP_PORT;
         $mail->CharSet    = 'UTF-8';
- 
++
