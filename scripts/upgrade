@@ -59,7 +59,9 @@ ynh_system_user_create --username=$app --home_dir="$final_path"
 #=================================================
 
 # Remove www file
-ynh_secure_remove --file="$final_path/*"
+pushd "$final_path"
+	ynh_exec_warn_less sudo -u $app rm -rf *
+popd
 
 if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
