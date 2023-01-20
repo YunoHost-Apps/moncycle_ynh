@@ -1,13 +1,18 @@
 diff --git a/www_data/lib/mail.php b/www_data/lib/mail.php
-index f153e3c..d970b56 100644
+index f153e3c..7d5b56d 100644
 --- a/www_data/lib/mail.php
 +++ b/www_data/lib/mail.php
-@@ -18,7 +18,8 @@ function mail_init(){
+@@ -18,11 +18,11 @@ function mail_init(){
         $mail->SMTPAuth   = true;
         $mail->Username   = SMTP_MAIL;
         $mail->Password   = SMTP_PASSWORD;
 -       $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-+       $mail->SMTPAutoTLS = false;
-+       $mail->SMTPSecure = false;
         $mail->Port       = SMTP_PORT;
         $mail->CharSet    = 'UTF-8';
+-
+        $mail->setFrom(SMTP_MAIL, 'moncycle.app');
++       $mail->SMTPAutoTLS = false;
++       $mail->SMTPSecure = false;
+        return $mail;
+ }
+ 
