@@ -58,10 +58,9 @@ ynh_system_user_create --username=$app --home_dir="$final_path"
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 
-# Remove www file
-pushd "$final_path"
-	ynh_exec_warn_less sudo -u $app rm -rf *
-popd
+# Void and recreate final_path
+ynh_secure_remove --file="$final_path"
+ynh_exec_warn_less mkdir "$final_path"
 
 if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
@@ -76,8 +75,8 @@ chmod -R o-rwx "$final_path"
 chown -R $app:www-data "$final_path"
 
 pushd "$final_path"
-	ynh_exec_warn_less sudo -u $app mv ./www_data/* .
-	ynh_exec_warn_less sudo -u $app ./module/install.sh
+	ynh_exec_warn_less mv ./www_data/* .
+	ynh_exec_warn_less ./module/install.sh
 popd
 
 #=================================================
@@ -98,7 +97,7 @@ ynh_add_fpm_config
 #=================================================
 # NGINX CONFIGURATION
 #=================================================
-ynh_script_progression --message="Upgrading NGINX web server configuration..." --time --weight=1
+ynh_script_progression --message="Upgrading NGINX web server configuration..." --weight=1
 
 # Create a dedicated NGINX config
 ynh_add_nginx_config
