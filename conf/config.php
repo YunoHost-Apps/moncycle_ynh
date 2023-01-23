@@ -8,8 +8,8 @@
 */
 
 define("DB_HOST", "localhost");
-define("DB_ID", "__APP__");
-define("DB_NAME", "__APP__");
+define("DB_ID", "__DB_USER__");
+define("DB_NAME", "__DB_NAME__");
 define("DB_PORT", 3306);
 define("DB_PASSWORD", "__DB_PWD__");
 

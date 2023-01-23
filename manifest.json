@@ -1,10 +1,10 @@
 {
-    "name": "Moncycle.app",
-    "id": "moncycle_app",
+    "name": "Moncycle",
+    "id": "moncycle",
     "packaging_format": 1,
     "description": {
-        "en": "Menstrual cycle follow-up application for natural family planning",
-        "fr": "Application de suivi de cycle pour les méthodes naturelles de régulation de naissance."
+        "en": "Menstrual cycle follow-up for natural family planning",
+        "fr": "Suivi de cycle pour les méthodes naturelles de régulation de naissance"
     },
     "version": "7.0~ynh1",
     "url": "https://moncycle.app",
@@ -38,8 +38,8 @@
             {
                 "name": "path",
                 "type": "path",
-                "example": "/example",
-                "default": "/example"
+                "example": "/moncycle",
+                "default": "/moncycle"
             },
             {
                 "name": "is_public",
