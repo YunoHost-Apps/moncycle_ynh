@@ -18,7 +18,7 @@ Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) po
 Rendre facile le suivi des cycles menstruels et l’application des méthodes naturelles.
 Billings . Symptothermie . FertilityCare
 
-# L’APPLICATION
+### Caractéristiques
 
 👩 un tableau de suivi du cycle menstruel
 🌳 dédiée aux méthodes naturelles
@@ -36,7 +36,7 @@ Billings . Symptothermie . FertilityCare
 🔒 pas de vente de données / pas de publicité
 🇫🇷 hébergée et développée en France
 
-# LES MÉTHODES NATURELLES
+### Les méthodes naturelles
 
 Les méthodes naturelles ? «Ce sont des méthodes basées sur la connaissance des signes de fertilité du cycle féminin. Le couple peut ainsi connaitre avec précision les périodes fertiles ou infertiles qu'il traverse, et en fonction de son projet d'enfant, connaitre le meilleur moment pour transmettre la vie, ou les périodes infertiles lorsqu'il souhaite espacer ou limiter les naissances.» Source: methodes-naturelles.fr
 
