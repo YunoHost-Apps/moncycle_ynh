@@ -52,8 +52,6 @@ ynh_app_setting_set --app=$app --key=path --value=$path_url
 #=================================================
 # STANDARD MODIFICATIONS
 #=================================================
-
-#=================================================
 # INSTALL DEPENDENCIES
 #=================================================
 ynh_script_progression --message="Installing dependencies..." --weight=1
@@ -104,7 +102,8 @@ popd
 ynh_script_progression --message="Configuring PHP-FPM..." --weight=1
 
 # Create a dedicated PHP-FPM config
-ynh_add_fpm_config
+ynh_add_fpm_config --usage="low" --footprint="low"
+phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
 #=================================================
 # NGINX CONFIGURATION
@@ -127,8 +126,6 @@ chown $app:$app "$final_path/config.php"
 #=================================================
 # GENERIC FINALIZATION
 #=================================================
-
-#=================================================
 # ADD A CRON JOB
 #=================================================
 
@@ -140,7 +137,7 @@ chmod 644 "$cron_path"
 #=================================================
 # SETUP FAIL2BAN
 #=================================================
-ynh_script_progression --message="Configuring Fail2Ban..." --weight=1
+#ynh_script_progression --message="Configuring Fail2Ban..." --weight=1
 
 # Create a dedicated Fail2Ban config
 # ynh_add_fail2ban_config --logpath="/var/log/nginx/${domain}-error.log" --failregex="Regex to match into the log for a failed login"

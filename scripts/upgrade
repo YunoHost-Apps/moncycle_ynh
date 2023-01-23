@@ -20,6 +20,7 @@ domain=$(ynh_app_setting_get --app=$app --key=domain)
 path_url=$(ynh_app_setting_get --app=$app --key=path)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
+db_user=$db_name
 db_pwd=$(ynh_app_setting_get --app=$app --key=mysqlpwd)
 
 #=================================================
@@ -43,9 +44,24 @@ ynh_clean_setup () {
 ynh_abort_if_errors
 
 #=================================================
-# STANDARD UPGRADE STEPS
+# ENSURE DOWNWARD COMPATIBILITY
 #=================================================
+ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
 
+# If db_name doesn't exist, create it
+if [ -z "$db_name" ]; then
+	db_name=$(ynh_sanitize_dbid --db_name=$app)
+	ynh_app_setting_set --app=$app --key=db_name --value=$db_name
+fi
+
+# If final_path doesn't exist, create it
+if [ -z "$final_path" ]; then
+	final_path=/var/www/$app
+	ynh_app_setting_set --app=$app --key=final_path --value=$final_path
+fi
+
+#=================================================
+# STANDARD UPGRADE STEPS
 #=================================================
 # CREATE DEDICATED USER
 #=================================================
@@ -58,16 +74,12 @@ ynh_system_user_create --username=$app --home_dir="$final_path"
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 
-# Void and recreate final_path
-ynh_secure_remove --file="$final_path"
-ynh_exec_warn_less mkdir "$final_path"
-
 if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
 	ynh_script_progression --message="Upgrading source files..." --weight=1
 
 	# Download, check integrity, uncompress and patch the source from app.src
-	ynh_setup_source --dest_dir="$final_path"
+	ynh_setup_source --dest_dir="$final_path" --keep="config.php"
 fi
 
 chmod 750 "$final_path"
@@ -92,7 +104,8 @@ ynh_install_app_dependencies $pkg_dependencies
 ynh_script_progression --message="Upgrading PHP-FPM configuration..." --weight=1
 
 # Create a dedicated PHP-FPM config
-ynh_add_fpm_config
+ynh_add_fpm_config --phpversion=$phpversion --usage="low" --footprint="low"
+phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
 #=================================================
 # NGINX CONFIGURATION
@@ -105,18 +118,15 @@ ynh_add_nginx_config
 #=================================================
 # CONFIGURATION UPGRADE
 #=================================================
+#ynh_script_progression --message="Adding a configuration file..." --weight=1
 
-ynh_script_progression --message="Adding a configuration file..." --weight=1
+#ynh_add_config --template="../conf/config.php" --destination="$final_path/config.php"
 
-ynh_add_config --template="../conf/config.php" --destination="$final_path/config.php"
-
-chmod 400 "$final_path/config.php"
-chown $app:$app "$final_path/config.php"
+#chmod 400 "$final_path/config.php"
+#chown $app:$app "$final_path/config.php"
 
 #=================================================
 # GENERIC FINALIZATION
-#=================================================
-
 #=================================================
 # UPDATE THE CRON JOB
 #=================================================
@@ -129,7 +139,7 @@ chmod 644 "$cron_path"
 #=================================================
 # UPGRADE FAIL2BAN
 #=================================================
-ynh_script_progression --message="Reconfiguring Fail2Ban..." --weight=1
+#ynh_script_progression --message="Reconfiguring Fail2Ban..." --weight=1
 
 # Create a dedicated Fail2Ban config
 # ynh_add_fail2ban_config --logpath="/var/log/nginx/${domain}-error.log" --failregex="Regex to match into the log for a failed login"
