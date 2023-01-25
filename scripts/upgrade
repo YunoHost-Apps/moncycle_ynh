@@ -108,8 +108,8 @@ ynh_install_app_dependencies $pkg_dependencies
 ynh_script_progression --message="Upgrading PHP-FPM configuration..." --weight=1
 
 # Create a dedicated PHP-FPM config
-ynh_add_fpm_config --phpversion=$phpversion --usage="low" --footprint="low"
 phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
+ynh_add_fpm_config --phpversion=$phpversion --usage="low" --footprint="low"
 
 #=================================================
 # NGINX CONFIGURATION
