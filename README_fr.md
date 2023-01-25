@@ -56,7 +56,7 @@ Il existe plusieurs méthodes proposées par différentes associations. Voici un
 
 🧠 moncycle.app n'a pas pour objectif de prédire ou de contrôler la bonne application des méthodes (ni de remplacer vos moniteurs) mais seulement de proposer un support numérique. Vous restez le cerveau derrière votre tableau. Si vous ne connaissez pas les méthodes naturelles ou si vous avez des questions sur les règles de celles-ci, rapprochez-vous d'un moniteur de l'une des associations ci-dessus.
 
-**Version incluse :** 7.0~ynh1
+**Version incluse :** 7.0~ynh2
 
 **Démo :** https://tableau.moncycle.app/connexion.php?email1=demo@moncycle.app&mdp=demo
 
