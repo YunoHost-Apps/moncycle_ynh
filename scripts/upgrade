@@ -82,6 +82,10 @@ then
 	ynh_setup_source --dest_dir="$final_path" --keep="config.php"
 fi
 
+# Void and recreate final_path
+ynh_secure_remove --file="$final_path"
+ynh_exec_warn_less mkdir "$final_path"
+
 chmod 750 "$final_path"
 chmod -R o-rwx "$final_path"
 chown -R $app:www-data "$final_path"
