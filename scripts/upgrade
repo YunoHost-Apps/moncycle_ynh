@@ -83,7 +83,7 @@ pushd "$final_path"
 popd
 
 # Download, check integrity, uncompress and patch the source from app.src
-ynh_setup_source --dest_dir="$final_path" -r
+ynh_setup_source --dest_dir="$final_path" --full_replace=1
 
 chmod 750 "$final_path"
 chmod -R o-rwx "$final_path"
