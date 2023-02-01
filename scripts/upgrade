@@ -74,16 +74,17 @@ ynh_system_user_create --username=$app --home_dir="$final_path"
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 
-# Void and recreate final_path
-ynh_secure_remove --file="$final_path"
-ynh_exec_warn_less mkdir "$final_path"
-
 if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
 	ynh_script_progression --message="Upgrading source files..." --weight=1
+	# Move config.php to temp folder 
+	# Can't use the --keep="config.php" option
+	pushd "$final_path"
+		ynh_exec_warn_less mv ./config.php /tmp/
+	popd
 
 	# Download, check integrity, uncompress and patch the source from app.src
-	ynh_setup_source --dest_dir="$final_path" --keep="config.php"
+	ynh_setup_source --dest_dir="$final_path" --full_replace
 fi
 
 chmod 750 "$final_path"
@@ -92,6 +93,7 @@ chown -R $app:www-data "$final_path"
 
 pushd "$final_path"
 	ynh_exec_warn_less mv ./www_data/* .
+	ynh_exec_warn_less mv /tmp/config.php .
 	ynh_exec_warn_less ./module/install.sh
 popd
 
@@ -118,16 +120,6 @@ ynh_script_progression --message="Upgrading NGINX web server configuration..." -
 
 # Create a dedicated NGINX config
 ynh_add_nginx_config
-
-#=================================================
-# CONFIGURATION UPGRADE
-#=================================================
-ynh_script_progression --message="Adding a configuration file..." --weight=1
-
-ynh_add_config --template="../conf/config.php" --destination="$final_path/config.php"
-
-chmod 400 "$final_path/config.php"
-chown $app:$app "$final_path/config.php"
 
 #=================================================
 # GENERIC FINALIZATION
