@@ -74,18 +74,15 @@ ynh_system_user_create --username=$app --home_dir="$final_path"
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 
-if [ "$upgrade_type" == "UPGRADE_APP" ]
-then
-	ynh_script_progression --message="Upgrading source files..." --weight=1
-	# Move config.php to temp folder 
-	# Can't use the --keep="config.php" option
-	pushd "$final_path"
-		ynh_exec_warn_less mv ./config.php /tmp/
-	popd
+ynh_script_progression --message="Upgrading source files..." --weight=1
+# Move config.php to temp folder 
+# Can't use the --keep="config.php" option
+pushd "$final_path"
+	ynh_exec_warn_less mv ./config.php /tmp/
+popd
 
-	# Download, check integrity, uncompress and patch the source from app.src
-	ynh_setup_source --dest_dir="$final_path" --full_replace
-fi
+# Download, check integrity, uncompress and patch the source from app.src
+ynh_setup_source --dest_dir="$final_path" --full_replace
 
 chmod 750 "$final_path"
 chmod -R o-rwx "$final_path"
