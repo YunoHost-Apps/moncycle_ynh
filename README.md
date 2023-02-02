@@ -17,7 +17,7 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 Menstrual cycle follow-up for natural family planning
 
-**Shipped version:** 7.0~ynh1
+**Shipped version:** 7.0~ynh2
 
 **Demo:** https://tableau.moncycle.app/connexion.php?email1=demo@moncycle.app&mdp=demo
 

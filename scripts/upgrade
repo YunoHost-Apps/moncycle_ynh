@@ -22,6 +22,7 @@ final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
 db_user=$db_name
 db_pwd=$(ynh_app_setting_get --app=$app --key=mysqlpwd)
+phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
 #=================================================
 # CHECK VERSION
@@ -74,13 +75,15 @@ ynh_system_user_create --username=$app --home_dir="$final_path"
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 
-if [ "$upgrade_type" == "UPGRADE_APP" ]
-then
-	ynh_script_progression --message="Upgrading source files..." --weight=1
+ynh_script_progression --message="Upgrading source files..." --weight=1
+# Move config.php to temp folder 
+# Can't use the --keep="config.php" option
+pushd "$final_path"
+	ynh_exec_warn_less mv ./config.php /tmp/
+popd
 
-	# Download, check integrity, uncompress and patch the source from app.src
-	ynh_setup_source --dest_dir="$final_path" --keep="config.php"
-fi
+# Download, check integrity, uncompress and patch the source from app.src
+ynh_setup_source --dest_dir="$final_path" --full_replace=1
 
 chmod 750 "$final_path"
 chmod -R o-rwx "$final_path"
@@ -88,6 +91,7 @@ chown -R $app:www-data "$final_path"
 
 pushd "$final_path"
 	ynh_exec_warn_less mv ./www_data/* .
+	ynh_exec_warn_less mv /tmp/config.php .
 	ynh_exec_warn_less ./module/install.sh
 popd
 
@@ -105,7 +109,6 @@ ynh_script_progression --message="Upgrading PHP-FPM configuration..." --weight=1
 
 # Create a dedicated PHP-FPM config
 ynh_add_fpm_config --phpversion=$phpversion --usage="low" --footprint="low"
-phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
 #=================================================
 # NGINX CONFIGURATION
@@ -114,16 +117,6 @@ ynh_script_progression --message="Upgrading NGINX web server configuration..." -
 
 # Create a dedicated NGINX config
 ynh_add_nginx_config
-
-#=================================================
-# CONFIGURATION UPGRADE
-#=================================================
-#ynh_script_progression --message="Adding a configuration file..." --weight=1
-
-#ynh_add_config --template="../conf/config.php" --destination="$final_path/config.php"
-
-#chmod 400 "$final_path/config.php"
-#chown $app:$app "$final_path/config.php"
 
 #=================================================
 # GENERIC FINALIZATION
