@@ -86,6 +86,7 @@ popd
 ynh_setup_source --dest_dir="$final_path" --full_replace=1
 
 chmod 750 "$final_path"
+ynh_exec_warn_less mkdir sessions
 chmod -R o-rwx "$final_path"
 chown -R $app:www-data "$final_path"
 
