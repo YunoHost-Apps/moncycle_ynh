@@ -6,6 +6,7 @@ It shall NOT be edited by hand.
 # Moncycle pour YunoHost
 
 [![Niveau d’intégration](https://dash.yunohost.org/integration/moncycle.svg)](https://dash.yunohost.org/appci/app/moncycle) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/moncycle.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/moncycle.maintain.svg)
+
 [![Installer Moncycle avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=moncycle)
 
 *[Read this readme in english.](./README.md)*
@@ -56,7 +57,7 @@ Il existe plusieurs méthodes proposées par différentes associations. Voici un
 
 🧠 moncycle.app n'a pas pour objectif de prédire ou de contrôler la bonne application des méthodes (ni de remplacer vos moniteurs) mais seulement de proposer un support numérique. Vous restez le cerveau derrière votre tableau. Si vous ne connaissez pas les méthodes naturelles ou si vous avez des questions sur les règles de celles-ci, rapprochez-vous d'un moniteur de l'une des associations ci-dessus.
 
-**Version incluse :** 7.0~ynh2
+**Version incluse :** 7.0~ynh4
 
 **Démo :** https://tableau.moncycle.app/connexion.php?email1=demo@moncycle.app&mdp=demo
 

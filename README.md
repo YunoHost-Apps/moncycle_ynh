@@ -6,6 +6,7 @@ It shall NOT be edited by hand.
 # Moncycle for YunoHost
 
 [![Integration level](https://dash.yunohost.org/integration/moncycle.svg)](https://dash.yunohost.org/appci/app/moncycle) ![Working status](https://ci-apps.yunohost.org/ci/badges/moncycle.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/moncycle.maintain.svg)
+
 [![Install Moncycle with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=moncycle)
 
 *[Lire ce readme en français.](./README_fr.md)*
@@ -17,7 +18,7 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 Menstrual cycle follow-up for natural family planning
 
-**Shipped version:** 7.0~ynh2
+**Shipped version:** 7.0~ynh4
 
 **Demo:** https://tableau.moncycle.app/connexion.php?email1=demo@moncycle.app&mdp=demo
 
