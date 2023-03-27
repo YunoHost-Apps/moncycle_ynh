@@ -1,5 +1,5 @@
-SOURCE_URL=https://github.com/jean-io/moncycle.app/archive/655ba524a3bf664c5f230812efc0932dfc5416bc.zip
-SOURCE_SUM=38425dd1668ec2edc6d326973a794977fddf3cceb703f2cebd70674891617a14
+SOURCE_URL=https://github.com/jean-io/moncycle.app/archive/9c15d501269f5873091b5914fd2a7f155d22ba04.zip
+SOURCE_SUM=bd5c5e0b6d1b9ed7206aeef08f6b371319d349fe17c15305623740333a33da54
 SOURCE_SUM_PRG=sha256sum
 SOURCE_FORMAT=zip
 SOURCE_IN_SUBDIR=true
