@@ -1,0 +1,60 @@
+#:schema https://raw.githubusercontent.com/YunoHost/apps/master/schemas/manifest.v2.schema.json
+
+packaging_format = 2
+
+id = "moncycle"
+name = "Moncycle"
+description.en = "Menstrual cycle follow-up for natural family planning"
+description.fr = "Suivi de cycle pour les méthodes naturelles de régulation de naissance"
+
+version = "7.0~ynh4"
+
+maintainers = ["Raoul de Limezy"]
+
+[upstream]
+license = "CC-BY-NC-SA-4.0"
+website = "https://moncycle.app"
+demo = "https://tableau.moncycle.app/connexion.php?email1=demo@moncycle.app&mdp=demo"
+code = "https://github.com/jean-io/moncycle.app"
+fund = "https://fr.tipeee.com/moncycleapp" 
+
+[integration]
+yunohost = ">= 11.2.4"
+architectures = "all"
+ldap = false
+sso = false
+disk = "50M" 
+ram.build = "50M" 
+ram.runtime = "50M" 
+
+[install]
+    [install.domain]
+    type = "domain"
+
+    [install.path]
+    type = "path"
+    default = "/moncycle"
+
+    [install.init_main_permission]
+    type = "group"
+    default = false
+
+[resources]
+    [resources.sources]
+        [resources.sources.main]
+        url = "https://github.com/jean-io/moncycle.app/archive/9c15d501269f5873091b5914fd2a7f155d22ba04.zip"
+        sha256 = "bd5c5e0b6d1b9ed7206aeef08f6b371319d349fe17c15305623740333a33da54"
+
+
+    [resources.system_user]
+
+    [resources.install_dir]
+
+    [resources.permissions]
+    main.url = "/"
+
+    [resources.apt]
+    packages = "php8.2-fpm, php8.2-cli, php8.2-gd, php8.2-mysql, libfreetype6-dev, libjpeg62-turbo-dev, libpng-dev"
+
+    [resources.database]
+    type = "mysql"
