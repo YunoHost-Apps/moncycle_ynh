@@ -16,22 +16,32 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 ## Overview
 
-Menstrual cycle follow-up for natural family planning
+Make it easy to monitor menstrual cycles and apply natural methods. Billings. Symptothermy. FertilityCare
 
-**Shipped version:** 7.0~ynh4
+### Features:
+
+- a menstrual cycle tracking chart
+- dedicated to natural methods
+- monitoring the evolution of cervical mucus
+- body temperature tracking (optional)
+- FertilityCare rating (optional)
+- simple on phone as on PC
+- aesthetic visual with dark mode
+- open source code
+- no pseudo predictive intelligence
+- PDF/CSV export for your instructors
+- finished Excel or Google Sheets
+- the same account on several devices
+- automatic sending of cycles by email
+- no data sales/no advertising
+
+**Shipped version:** 7.0~ynh5
 
 **Demo:** https://tableau.moncycle.app/connexion.php?email1=demo@moncycle.app&mdp=demo
 
 ## Screenshots
 
 ![Screenshot of Moncycle](./doc/screenshots/moncycle_app.png)
-
-## Disclaimers / important information
-
-* No LDAP integration
-* After installing, you can create your own user using the form
-* Once done, you can (if you want) set the account creation to false in `/var/www/moncycle_app/config.php`
-* If you want to use the app in PWA mode, be sure to be connected to your account first
 
 ## Documentation and resources
 
