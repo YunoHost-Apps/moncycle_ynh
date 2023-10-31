@@ -76,7 +76,7 @@ Il existe plusieurs méthodes proposées par différentes associations. Voici un
 
 * Site officiel de l’app : <https://moncycle.app>
 * Dépôt de code officiel de l’app : <https://github.com/jean-io/moncycle.app>
-* Documentation YunoHost pour cette app : <https://yunohost.org/app_moncycle>
+* YunoHost Store: <https://apps.yunohost.org/app/moncycle>
 * Signaler un bug : <https://github.com/YunoHost-Apps/moncycle_ynh/issues>
 
 ## Informations pour les développeurs

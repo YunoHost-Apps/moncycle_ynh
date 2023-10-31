@@ -37,7 +37,7 @@ Menstrual cycle follow-up for natural family planning
 
 * Official app website: <https://moncycle.app>
 * Upstream app code repository: <https://github.com/jean-io/moncycle.app>
-* YunoHost documentation for this app: <https://yunohost.org/app_moncycle>
+* YunoHost Store: <https://apps.yunohost.org/app/moncycle>
 * Report a bug: <https://github.com/YunoHost-Apps/moncycle_ynh/issues>
 
 ## Developer info
