@@ -14,9 +14,9 @@ define("DB_PORT", 3306);
 define("DB_PASSWORD", "__DB_PWD__");
 
 define("SMTP_HOST", "localhost");
-define("SMTP_PORT", 25);
+define("SMTP_PORT", 587);
 define("SMTP_MAIL", "__APP__@__DOMAIN__");
-define("SMTP_PASSWORD", "");
+define("SMTP_PASSWORD", "__MAIL_PWD__");
 
 define("CREATION_COMPTE", true);
 define("CONNEXION_COMPTE", true);
