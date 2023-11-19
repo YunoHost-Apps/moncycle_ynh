@@ -42,6 +42,17 @@ pushd "$install_dir"
 popd
 
 #=================================================
+# SPECIFIC UPGRADE
+#=================================================
+# UPDATE COMPOSER DEPENDENCIES
+#=================================================
+ynh_script_progression --message="Updating composer..." --weight=1
+
+ynh_exec_warn_less ynh_composer_exec --workdir="$install_dir" --commands="self-update --2"
+
+ynh_exec_warn_less ynh_composer_exec --workdir="$install_dir" --commands="update"
+
+#=================================================
 # PHP-FPM CONFIGURATION
 #=================================================
 ynh_script_progression --message="Upgrading PHP-FPM configuration..." --weight=1
