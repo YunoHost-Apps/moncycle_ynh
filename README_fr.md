@@ -48,6 +48,7 @@ Rendre facile le suivi des cycles menstruels et l’application des méthodes na
 
 * Site officiel de l’app : <https://moncycle.app>
 * Dépôt de code officiel de l’app : <https://github.com/jean-io/moncycle.app>
+* YunoHost Store: <https://apps.yunohost.org/app/moncycle>
 * Signaler un bug : <https://github.com/YunoHost-Apps/moncycle_ynh/issues>
 
 ## Informations pour les développeurs

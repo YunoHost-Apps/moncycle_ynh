@@ -47,6 +47,7 @@ Make it easy to monitor menstrual cycles and apply natural methods. Billings. Sy
 
 * Official app website: <https://moncycle.app>
 * Upstream app code repository: <https://github.com/jean-io/moncycle.app>
+* YunoHost Store: <https://apps.yunohost.org/app/moncycle>
 * Report a bug: <https://github.com/YunoHost-Apps/moncycle_ynh/issues>
 
 ## Developer info
