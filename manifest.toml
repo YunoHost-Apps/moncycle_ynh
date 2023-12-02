@@ -1,0 +1,56 @@
+packaging_format = 2
+
+id = "moncycle"
+name = "Moncycle"
+description.en = "Menstrual cycle follow-up for natural family planning"
+description.fr = "Suivi de cycle pour les méthodes naturelles de régulation de naissance"
+
+version = "7.0~ynh5"
+
+maintainers = ["Raoul de Limezy"]
+
+[upstream]
+license = "CC-BY-NC-SA-4.0"
+website = "https://moncycle.app"
+demo = "https://tableau.moncycle.app/connexion.php?email1=demo@moncycle.app&mdp=demo"
+code = "https://github.com/jean-io/moncycle.app"
+
+[integration]
+yunohost = ">= 11.2"
+architectures = "all"
+multi_instance = true
+ldap = false
+sso = false
+disk = "50M"
+ram.build = "100M"
+ram.runtime = "50M"
+
+[install]
+    [install.domain]
+    type = "domain"
+
+    [install.path]
+    type = "path"
+    default = "/moncycle"
+
+    [install.init_main_permission]
+    type = "group"
+    default = false
+
+[resources]
+        [resources.sources.main]
+        url = "https://github.com/jean-io/moncycle.app/archive/v7.tar.gz"
+        sha256 = "25f435a55304a5692f55a681971ac41a034c527a87198612e3bfadb7a3b92028"
+
+    [resources.system_user]
+
+    [resources.install_dir]
+
+    [resources.permissions]
+    main.url = "/"
+
+    [resources.apt]
+    packages = "mariadb-server, php8.2-gd, php8.2-mysql"
+
+    [resources.database]
+    type = "mysql"
