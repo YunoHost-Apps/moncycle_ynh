@@ -39,7 +39,7 @@ ram.runtime = "50M"
 
 [resources]
         [resources.sources.main]
-        url = "https://github.com/jean-io/moncycle.app/archive/v7.zip"
+        url = "https://github.com/jean-io/moncycle.app/archive/v7.tar.gz"
         sha256 = "25f435a55304a5692f55a681971ac41a034c527a87198612e3bfadb7a3b92028"
 
     [resources.system_user]
