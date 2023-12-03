@@ -42,7 +42,6 @@ ram.runtime = "50M"
         sha256 = "94c3010d12f9650ea87aecde046ef0ba4102308b566de94868adc76c69c22ccf"
 
     [resources.system_user]
-        allow_email = true
 
     [resources.install_dir]
 
@@ -50,7 +49,7 @@ ram.runtime = "50M"
     main.url = "/"
 
     [resources.apt]
-    packages = "mariadb-server, php8.2-gd, php8.2-mysql"
+    packages = "mariadb-server, php8.2-gd, php8.2-mysql, php8.2-mbstring"
 
     [resources.database]
     type = "mysql"
