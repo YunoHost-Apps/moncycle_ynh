@@ -38,7 +38,7 @@ popd
  #=================================================
  ynh_script_progression --message="Installing composer dependencies..." --weight=1
 
- ynh_exec_warn_less ynh_install_composer --phpversion="$phpversion" --composerversion="$YNH_COMPOSER_VERSION" --workdir="$install_dir/composer"
+ ynh_exec_warn_less ynh_install_composer --phpversion="$phpversion" --composerversion="$YNH_COMPOSER_VERSION" --workdir="$install_dir"
 
 # worckaround while https://github.com/chartjs/Chart.js/issues/11478 is not fixed
 ynh_exec_warn_less mkdir "$install_dir/vendor/chartjs"
