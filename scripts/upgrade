@@ -38,7 +38,6 @@ chown -R $app:www-data "$install_dir"
 pushd "$install_dir"
 	ynh_exec_warn_less mv ./www_data/* .
 	ynh_exec_warn_less mv /tmp/config.php .
-	ynh_exec_warn_less ./module/install.sh
 popd
 
 #=================================================
