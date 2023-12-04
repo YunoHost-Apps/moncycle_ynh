@@ -30,6 +30,8 @@ popd
 ynh_setup_source --dest_dir="$install_dir" --full_replace=1
 
 ynh_exec_warn_less mkdir "$install_dir/sessions"
+ynh_exec_warn_less mkdir "$install_dir/soap_cache"
+ynh_exec_warn_less mkdir "$install_dir/composer"
 
 chmod 750 "$install_dir"
 chmod -R o-rwx "$install_dir"
@@ -38,8 +40,20 @@ chown -R $app:www-data "$install_dir"
 pushd "$install_dir"
 	ynh_exec_warn_less mv ./www_data/* .
 	ynh_exec_warn_less mv /tmp/config.php .
-	ynh_exec_warn_less ./module/install.sh
 popd
+
+#=================================================
+ # SPECIFIC SETUP
+ #=================================================
+ # INSTALL COMPOSER DEPENDENCIES
+ #=================================================
+ ynh_script_progression --message="Installing composer dependencies..." --weight=1
+
+ ynh_exec_warn_less ynh_install_composer --phpversion="$phpversion" --composerversion="$YNH_COMPOSER_VERSION" --workdir="$install_dir"
+
+# worckaround while https://github.com/chartjs/Chart.js/issues/11478 is not fixed
+ynh_exec_warn_less mkdir "$install_dir/vendor/chartjs"
+ynh_exec_warn_less curl -o "$install_dir/vendor/chartjs"/chart.js https://cdn.jsdelivr.net/npm/chart.js
 
 #=================================================
 # PHP-FPM CONFIGURATION
