@@ -18,6 +18,8 @@ ynh_script_progression --message="Setting up source files..." --weight=1
 ynh_setup_source --dest_dir="$install_dir"
 
 ynh_exec_warn_less mkdir "$install_dir/sessions"
+ynh_exec_warn_less mkdir "$install_dir/soap_cache"
+ynh_exec_warn_less mkdir "$install_dir/composer"
 
 chmod 750 "$install_dir"
 chmod -R o-rwx "$install_dir"
@@ -25,10 +27,22 @@ chown -R $app:www-data "$install_dir"
 
 pushd "$install_dir"
 	ynh_exec_warn_less mv ./www_data/* .
-	ynh_exec_warn_less ./module/install.sh
 	ynh_mysql_connect_as --user=$db_user --password=$db_pwd --database=$db_name < db/table.sql
 	ynh_mysql_connect_as --user=$db_user --password=$db_pwd --database=$db_name < db/demo.sql
 popd
+
+#=================================================
+ # SPECIFIC SETUP
+ #=================================================
+ # INSTALL COMPOSER DEPENDENCIES
+ #=================================================
+ ynh_script_progression --message="Installing composer dependencies..." --weight=1
+
+ ynh_exec_warn_less ynh_install_composer --phpversion="$phpversion" --composerversion="$YNH_COMPOSER_VERSION" --workdir="$install_dir"
+
+# worckaround while https://github.com/chartjs/Chart.js/issues/11478 is not fixed
+ynh_exec_warn_less mkdir "$install_dir/vendor/chartjs"
+ynh_exec_warn_less curl -o "$install_dir/vendor/chartjs"/chart.js https://cdn.jsdelivr.net/npm/chart.js
 
 #=================================================
 # PHP-FPM CONFIGURATION
