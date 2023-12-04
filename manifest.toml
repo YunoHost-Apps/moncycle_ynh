@@ -5,7 +5,7 @@ name = "Moncycle"
 description.en = "Menstrual cycle follow-up for natural family planning"
 description.fr = "Suivi de cycle pour les méthodes naturelles de régulation de naissance"
 
-version = "7.0~ynh6"
+version = "7.0~ynh5"
 
 maintainers = ["Raoul de Limezy"]
 
@@ -35,11 +35,12 @@ ram.runtime = "50M"
 
     [install.init_main_permission]
     type = "group"
+    default = false
 
 [resources]
         [resources.sources.main]
-        url = "https://github.com/jean-io/moncycle.app/archive/4ee55999138825fd2f309fa27a69bafe6f5a0c36.zip"
-        sha256 = "94c3010d12f9650ea87aecde046ef0ba4102308b566de94868adc76c69c22ccf"
+        url = "https://github.com/jean-io/moncycle.app/archive/v7.tar.gz"
+        sha256 = "25f435a55304a5692f55a681971ac41a034c527a87198612e3bfadb7a3b92028"
 
     [resources.system_user]
 
@@ -49,7 +50,7 @@ ram.runtime = "50M"
     main.url = "/"
 
     [resources.apt]
-    packages = "mariadb-server, php8.2-gd, php8.2-mysql, php8.2-mbstring"
+    packages = "mariadb-server, php8.2-gd, php8.2-mysql"
 
     [resources.database]
     type = "mysql"
