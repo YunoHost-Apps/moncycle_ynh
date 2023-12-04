@@ -40,6 +40,17 @@ chown -R $app:www-data "$install_dir"
 pushd "$install_dir"
 	ynh_exec_warn_less mv ./www_data/* .
 	ynh_exec_warn_less mv /tmp/config.php .
+
+	ynh_script_progression --message="Checking if a database migration is needed"
+	if ynh_compare_current_package_version --comparison le --version 7.0~ynh5
+	then
+		ynh_script_progression --message="Database migration required, migrating"
+		ynh_add_config --template="../conf/migrate_7.0.5.sql" --destination="$install_dir/migrate.sql"
+		ynh_mysql_connect_as --user=$db_user --password=$db_pwd --database=$db_name < migrate.sql
+	else
+		ynh_script_progression --message="Database migration not required"
+	fi
+
 popd
 
 #=================================================
