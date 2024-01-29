@@ -42,7 +42,8 @@ popd
 
 # worckaround while https://github.com/chartjs/Chart.js/issues/11478 is not fixed
 ynh_exec_warn_less mkdir "$install_dir/vendor/chartjs"
-ynh_exec_warn_less curl -o "$install_dir/vendor/chartjs"/chart.js https://cdn.jsdelivr.net/npm/chart.js
+ynh_exec_warn_less curl -o "$install_dir/vendor/chartjs"/chart.js https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.js
+ynh_exec_warn_less curl -o "$install_dir/vendor/chartjs"/chart.umd.js.map https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js.map
 
 #=================================================
 # PHP-FPM CONFIGURATION
