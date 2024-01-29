@@ -50,16 +50,16 @@ pushd "$install_dir"
 		ynh_add_config --template="../conf/migrate_7.0.6.sql" --destination="$install_dir/migrate_7.0.6.sql"
 		ynh_mysql_connect_as --user=$db_user --password=$db_pwd --database=$db_name < migrate_7.0.6.sql
 	else
-		if ynh_compare_current_package_version --comparison eq --version 7.0~ynh6
+		if ynh_compare_current_package_version --comparison le --version 7.0~ynh6
 		then
 			ynh_script_progression --message="7.0.6 to 8.0 database migration required, migrating"
 			ynh_add_config --template="../conf/migrate_7.0.6.sql" --destination="$install_dir/migrate_7.0.6.sql"
 			ynh_mysql_connect_as --user=$db_user --password=$db_pwd --database=$db_name < migrate_7.0.6.sql
 		else
-			ynh_script_progression --message="7.0.6 to 8.0 database migration not required"
+			ynh_script_progression --message="7.0.6 to 8.0 database migration not required since package > 7.0.6"
 		fi
 	fi
-	ynh_script_progression --message="Database migration not required"
+	ynh_script_progression --message="You shouldn't see this"
 
 popd
 
