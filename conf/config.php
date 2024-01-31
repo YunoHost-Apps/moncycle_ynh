@@ -7,7 +7,7 @@
 ** https://github.com/jean-io/moncycle.app
 */
 
-define("APP_URL", "__DOMAIN__/__PATH__");
+define("APP_URL", "__DOMAIN____PATH__");
 
 define("DB_HOST", "localhost");
 define("DB_ID", "__DB_USER__");
