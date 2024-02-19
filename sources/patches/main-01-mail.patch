@@ -1,5 +1,5 @@
 diff --git a/www_data/lib/mail.php b/www_data/lib/mail.php
-index 363aeb7..343e33b 100644
+index 9b58b50..54553cf 100644
 --- a/www_data/lib/mail.php
 +++ b/www_data/lib/mail.php
 @@ -15,10 +15,10 @@ function mail_init(){
@@ -7,10 +7,11 @@ index 363aeb7..343e33b 100644
         $mail->isSMTP();
         $mail->Host       = SMTP_HOST;
 -       $mail->SMTPAuth   = true;
++       $mail->SMTPAuth   = false;
         $mail->Username   = SMTP_MAIL;
         $mail->Password   = SMTP_PASSWORD;
 -       $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-+       $mail->SMTPAutoTLS = false;
 +       $mail->SMTPSecure = false;
         $mail->Port       = SMTP_PORT;
         $mail->CharSet    = 'UTF-8';
+ 
