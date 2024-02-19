@@ -29,7 +29,6 @@ popd
 # Download, check integrity, uncompress and patch the source from app.src
 ynh_setup_source --dest_dir="$install_dir" --full_replace=1
 
-ynh_exec_warn_less mkdir "$install_dir/sessions"
 ynh_exec_warn_less mkdir "$install_dir/soap_cache"
 ynh_exec_warn_less mkdir "$install_dir/composer"
 
