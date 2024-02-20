@@ -69,6 +69,8 @@ ynh_add_config --template="../conf/config.php" --destination="$install_dir/confi
 chmod 400 "$install_dir/config.php"
 chown $app:$app "$install_dir/config.php"
 
+ynh_add_config --template="../conf/version.json" --destination="$install_dir/api/version.json"
+
 #=================================================
 # END OF SCRIPT
 #=================================================
