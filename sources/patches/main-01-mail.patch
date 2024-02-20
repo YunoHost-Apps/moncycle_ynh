@@ -4,16 +4,16 @@ index 9b58b50..1a538e6 100644
 +++ b/www_data/lib/mail.php
 @@ -15,12 +15,12 @@ function mail_init(){
  
-        $mail->isSMTP();
-        $mail->Host       = SMTP_HOST;
--       $mail->SMTPAuth   = true;
-        $mail->Username   = SMTP_MAIL;
-        $mail->Password   = SMTP_PASSWORD;
--       $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-        $mail->Port       = SMTP_PORT;
-        $mail->CharSet    = 'UTF-8';
-+       $mail->SMTPAuth   = false;
-+       $mail->SMTPSecure = false;
+ 	$mail->isSMTP();
+ 	$mail->Host       = SMTP_HOST;
+-	$mail->SMTPAuth   = true;
+ 	$mail->Username   = SMTP_MAIL;
+ 	$mail->Password   = SMTP_PASSWORD;
+-	$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+ 	$mail->Port       = SMTP_PORT;
+ 	$mail->CharSet    = 'UTF-8';
++	$mail->SMTPAuth   = false;
++	$mail->SMTPSecure = false;
  
-        $mail->setFrom(SMTP_MAIL, 'moncycle.app');
-        return $mail;
+ 	$mail->setFrom(SMTP_MAIL, 'moncycle.app');
+ 	return $mail;
