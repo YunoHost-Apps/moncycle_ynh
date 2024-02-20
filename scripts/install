@@ -71,6 +71,9 @@ chown $app:$app "$install_dir/config.php"
 
 ynh_add_config --template="../conf/version.json" --destination="$install_dir/api/version.json"
 
+chmod 400 "$install_dir/api/version.json"
+chown $app:www-data "$install_dir/api/version.json"
+
 #=================================================
 # END OF SCRIPT
 #=================================================
