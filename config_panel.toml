@@ -1,8 +1,10 @@
 version = "1.0"
 [main]
-    [main.main]
-        [main.main.CREATION_COMPTE]
-        ask.en = "Création de comptes"
-        type = "select"
-        choices = ["true", "false"]
+name = "Moncycle.app configuration"
+    [main.comptes]
+    name = "comptes"
+        [main.comptes.CREATION_COMPTE]
+        ask.en = "Enable account creation"
+        type = "boolean"
+        default = "true"
         bind = ":__INSTALL_DIR__/config.php"

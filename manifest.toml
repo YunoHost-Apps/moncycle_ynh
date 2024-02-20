@@ -32,13 +32,6 @@ ram.runtime = "50M"
     [install.init_main_permission]
     type = "group"
 
-    [install.CREATION_COMPTE]
-    ask.en = "Can accounts be created ?"
-    ask.fr = "Laisser la création de nouveaux comptes ouverte ?"
-    type = "select"
-    choices = ["true", "false"]
-    default = "true"
-
 [resources]
         [resources.sources.main]
         url = "https://github.com/jean-io/moncycle.app/archive/2eaf8d5765423276f2f16816fb62218f6b311555.zip"
@@ -56,3 +49,6 @@ ram.runtime = "50M"
 
     [resources.database]
     type = "mysql"
+
+    [main.main.CREATION_COMPTE]
+    CREATION_COMPTE="true"
