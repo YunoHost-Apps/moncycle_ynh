@@ -20,10 +20,10 @@ define("SMTP_PORT", 25);
 define("SMTP_MAIL", "__APP__@__DOMAIN__");
 define("SMTP_PASSWORD", "");
 
-define("CREATION_COMPTE", __CRE_COMPTE__);
-define("CONNEXION_COMPTE", __CON_COMPTE__);
+define("CREATION_COMPTE", __CREATION_COMPTE__);
+define("CONNEXION_COMPTE", __CONNEXION_COMPTE__);
 
-define("CSV_SEP", "__SEPARATEUR_CSV__");
+define("CSV_SEP", "__CSV_SEP__");
 
 define("PHP_SECURE_COOKIES", true);
 
