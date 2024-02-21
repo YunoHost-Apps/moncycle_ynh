@@ -25,7 +25,7 @@ ynh_abort_if_errors
 final_path=$(ynh_app_setting_get $app final_path)
 
 get__csv_sep(){
-	echo "$(grep -oPi 'define\("CSV_SEP",[\s"]*\K[^\")]+' "$install_dir/config.php")"
+	echo ""$(grep -oPi 'define\("CSV_SEP",[\s"]*\K[^\")]+' "$install_dir/config.php")""
 }
 
 set__csv_sep(){
