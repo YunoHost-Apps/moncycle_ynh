@@ -1,6 +1,7 @@
 version = "1.0"
 [main]
 name = "Configuration"
+services = [ 'php$phpversion']
     
    [main.comptes]
    name = "Comptes"
