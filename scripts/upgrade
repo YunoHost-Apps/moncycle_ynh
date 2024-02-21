@@ -113,8 +113,9 @@ ynh_add_config --template="../conf/config.php" --destination="$install_dir/confi
 chmod 400 "$install_dir/config.php"
 chown $app:$app "$install_dir/config.php"
 
+# Remove old version file and replace it
+ynh_secure_remove --file="$install_dir/api/version.json"
 ynh_add_config --template="../conf/version.json" --destination="$install_dir/api/version.json"
-
 chmod 655 "$install_dir/api/version.json"
 chown $app:www-data "$install_dir/api/version.json"
 
