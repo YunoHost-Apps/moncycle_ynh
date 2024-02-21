@@ -9,8 +9,8 @@
 source _common.sh
 source /usr/share/yunohost/helpers
 
-creation_compte="true"
-connexion_compte="true"
+creation_compte=true
+connexion_compte=true
 separateur_csv=";"
 
 ynh_app_setting_set --app=$app --key=creation_compte --value=$creation_compte
