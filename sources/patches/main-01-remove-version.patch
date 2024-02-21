@@ -5,8 +5,8 @@ index 3b8a410..0000000
 +++ /dev/null
 @@ -1,6 +0,0 @@
 -{
--	"app": "moncycle.app",
--	"version": "dev",
--	"build": "YYYY-MM-DD",
--	"commit": "xxxxxxxx"
+-    "app": "moncycle.app",
+-    "version": "dev",
+-    "build": "YYYY-MM-DD",
+-    "commit": "xxxxxxxx"
 -}
