@@ -2,8 +2,8 @@ version = "1.0"
 [main]
 name = "Moncycle.app configuration"
     
-    [main.comptes]
-    name = "comptes"
+ #   [main.comptes]
+ #   name = "comptes"
         
  #       [main.comptes.creation_compte]
  #       ask.en = "Enable account creation"
