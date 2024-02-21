@@ -18,9 +18,10 @@ services = [ 'php8.3-fpm']
       [main.comptes.connexion_compte]
       ask.en = "Enable account connexion"
       ask.fr = "Permettre la connexion aux comptes"
-      type = "select"
-      choices = ["true", "false"]
-      default = "true"
+      type = "boolean"
+      yes = true
+      no = false
+      default = true
 
    [main.export]
    name = "Export"
