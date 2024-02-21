@@ -9,14 +9,6 @@
 source _common.sh
 source /usr/share/yunohost/helpers
 
-cre_compte=true
-con_compte=true
-separateur_csv=";"
-
-ynh_app_setting_set --app=$app --key=cre_compte --value=$cre_compte
-ynh_app_setting_set --app=$app --key=con_compte --value=$con_compte
-ynh_app_setting_set --app=$app --key=separateur_csv --value=$separateur_csv
-
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
