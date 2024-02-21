@@ -1,9 +1,9 @@
 version = "1.0"
 [main]
-name = "Moncycle.app configuration"
+name = "Configuration"
     
    [main.comptes]
-   name = "comptes"
+   name = "Comptes"
         
       [main.comptes.creation_compte]
       ask.en = "Enable account creation"
@@ -21,7 +21,7 @@ name = "Moncycle.app configuration"
       default = "true"
 
    [main.export]
-   name = "export"
+   name = "Export"
      
       [main.export.csv_sep]
       ask.en = "Separator for data export in csv format"
