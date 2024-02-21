@@ -49,7 +49,7 @@ set__connexion_compte(){
 }
 
 get__statistics(){
-	echo "$(/usr/bin/php8.3 --define apc.enable_cli=1 stat.php)"
+	echo "$(/usr/bin/php8.3 --define apc.enable_cli=1 "$install_dir/script/stat.php")"
 }
 
 #=================================================
