@@ -30,7 +30,6 @@ get__csv_sep(){
 
 set__csv_sep(){
 	sed -i "s/define(\"CSV_SEP\",.*);/define(\"CSV_SEP\", \"$csv_sep\");/" "$install_dir/config.php"
-
 }
 
 get__creation_compte(){
