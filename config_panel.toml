@@ -29,6 +29,5 @@ services = [ 'php8.3-fpm']
       [main.export.csv_sep]
       ask.en = "Separator for data export in csv format"
       ask.fr = "Séparateur pour l'export des données au format csv"
-      type = "select"
-      choices = [";", ",", " "]
+      type = "string"
       default = ";"
