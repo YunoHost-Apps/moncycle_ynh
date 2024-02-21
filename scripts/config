@@ -32,6 +32,22 @@ set__csv_sep(){
 	sed -i "s/define(\"CSV_SEP\",.*);/define(\"CSV_SEP\", \"$csv_sep\");/" "$install_dir/config.php"
 }
 
+get__creation_compte(){
+	grep -oPi 'define\("CREATION_COMPTE",[\s"]*\K[^\")]+' "$install_dir/config.php"
+}
+
+set__creation_compte(){
+	sed -i "s/define(\"CREATION_COMPTE\",.*);/define(\"CSV_SEP\", \"$creation_compte\");/" "$install_dir/config.php"
+}
+
+get__connexion_compte(){
+	grep -oPi 'define\("CONNEXION_COMPTE",[\s"]*\K[^\")]+' "$install_dir/config.php"
+}
+
+set__connexion_compte(){
+	sed -i "s/define(\"CONNEXION_COMPTE\",.*);/define(\"CSV_SEP\", \"$connexion_compte\");/" "$install_dir/config.php"
+}
+
 
 #=================================================
 # GENERIC FINALIZATION
