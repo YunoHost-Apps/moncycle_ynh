@@ -23,7 +23,7 @@ define("SMTP_PASSWORD", "");
 define("CREATION_COMPTE", __CREATION_COMPTE__);
 define("CONNEXION_COMPTE", __CONNEXION_COMPTE__);
 
-define("CSV_SEP", "__CSV_SEP__");
+define("CSV_SEP", ";");
 
 define("PHP_SECURE_COOKIES", true);
 

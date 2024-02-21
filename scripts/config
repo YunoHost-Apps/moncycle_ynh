@@ -24,10 +24,10 @@ ynh_abort_if_errors
 
 final_path=$(ynh_app_setting_get $app final_path)
 
-# import needed settings
-creation_compte=$(ynh_app_setting_get --app="$app" --key=creation_compte)
-connexion_compte=$(ynh_app_setting_get --app="$app" --key=connexion_compte)
-csv_sep=$(ynh_app_setting_get --app="$app" --key=csv_sep)
+## import needed settings
+#creation_compte=$(ynh_app_setting_get --app="$app" --key=creation_compte)
+#connexion_compte=$(ynh_app_setting_get --app="$app" --key=connexion_compte)
+#csv_sep=$(ynh_app_setting_get --app="$app" --key=csv_sep)
 
 #=================================================
 # GENERIC FINALIZATION

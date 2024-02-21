@@ -28,10 +28,10 @@ if [ -z "${connexion_compte:-}" ]; then
 fi
 
 # If separateur_csv doesn't exist, create it
-if [ -z "${csv_sep:-}" ]; then
-    csv_sep=";"
-    ynh_app_setting_set --app=$app --key=csv_sep --value=$csv_sep
-fi
+#if [ -z "${csv_sep:-}" ]; then
+#    csv_sep=";"
+#    ynh_app_setting_set --app=$app --key=csv_sep --value=$csv_sep
+#fi
 
 
 #=================================================
