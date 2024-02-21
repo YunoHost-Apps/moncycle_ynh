@@ -40,4 +40,3 @@ services = [ 'php8.3-fpm']
       ask.en = "Statistics for the server"
       ask.fr = "Statistiques du serveur"
       type = "display_text"
-      readonly = true
