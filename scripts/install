@@ -17,7 +17,6 @@ ynh_script_progression --message="Setting up source files..." --weight=1
 # Download, check integrity, uncompress and patch the source from app.src
 ynh_setup_source --dest_dir="$install_dir"
 
-ynh_exec_warn_less mkdir "$install_dir/sessions"
 ynh_exec_warn_less mkdir "$install_dir/soap_cache"
 ynh_exec_warn_less mkdir "$install_dir/composer"
 
@@ -66,9 +65,12 @@ chmod 644 "/etc/cron.d/$app"
 ynh_script_progression --message="Adding a configuration file..." --weight=1
 
 ynh_add_config --template="../conf/config.php" --destination="$install_dir/config.php"
-
 chmod 400 "$install_dir/config.php"
 chown $app:$app "$install_dir/config.php"
+
+ynh_add_config --template="../conf/version.json" --destination="$install_dir/api/version.json"
+chmod 655 "$install_dir/api/version.json"
+chown $app:www-data "$install_dir/api/version.json"
 
 #=================================================
 # END OF SCRIPT
