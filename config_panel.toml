@@ -13,7 +13,7 @@ name = "Moncycle.app configuration"
         yes = "true"
         no = "false"
         help = "Don't disable account creation before creating one for yourself !"
-        bind = "CREA_COMPTE:__INSTALL_DIR__/config.php"
+        bind = "CREATION_COMPTE:__INSTALL_DIR__/config.php"
         
         [main.comptes.con_compte]
         ask.en = "Enable account connexion"
@@ -22,7 +22,7 @@ name = "Moncycle.app configuration"
         default = "true"
         yes = "true"
         no = "false"
-        bind = "CON_COMPTE:__INSTALL_DIR__/config.php"
+        bind = "CONNEXION_COMPTE:__INSTALL_DIR__/config.php"
     
     [main.export]
     name = "export"
@@ -32,4 +32,4 @@ name = "Moncycle.app configuration"
         ask.fr = "Séparateur pour l'export des données au format csv"
         type = "string"
         default = ";"
-        bind = "SEPARATEUR_CSV:__INSTALL_DIR__/config.php"
+        bind = "CSV_SEP:__INSTALL_DIR__/config.php"
