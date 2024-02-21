@@ -16,15 +16,15 @@ source /usr/share/yunohost/helpers
 upgrade_type=$(ynh_check_app_version_changed)
 
 # If creation_compte doesn't exist, create it
-if [ -z "${creation_compte:-}" ]; then
-    creation_compte=true
-    ynh_app_setting_set --app=$app --key=creation_compte --value=$creation_compte
+if [ -z "${cre_compte:-}" ]; then
+    cre_compte=true
+    ynh_app_setting_set --app=$app --key=cre_compte --value=$cre_compte
 fi
 
 # If connexion_compte doesn't exist, create it
-if [ -z "${connexion_compte:-}" ]; then
-    connexion_compte=true
-    ynh_app_setting_set --app=$app --key=connexion_compte --value=$connexion_compte
+if [ -z "${con_compte:-}" ]; then
+    con_compte=true
+    ynh_app_setting_set --app=$app --key=con_compte --value=$con_compte
 fi
 
 # If separateur_csv doesn't exist, create it

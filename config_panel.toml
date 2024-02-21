@@ -13,7 +13,7 @@ name = "Moncycle.app configuration"
         yes = "true"
         no = "false"
         help = "Don't disable account creation before creating one for yourself !"
-        bind = "CREATION_COMPTE:__INSTALL_DIR__/config.php"
+        bind = "CREA_COMPTE:__INSTALL_DIR__/config.php"
         
         [main.comptes.connexion_compte]
         ask.en = "Enable account connexion"
@@ -22,7 +22,7 @@ name = "Moncycle.app configuration"
         default = "true"
         yes = "true"
         no = "false"
-        bind = "CONNEXION_COMPTE:__INSTALL_DIR__/config.php"
+        bind = "CON_COMPTE:__INSTALL_DIR__/config.php"
     
     [main.export]
     name = "export"
