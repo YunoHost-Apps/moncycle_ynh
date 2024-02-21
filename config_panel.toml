@@ -28,6 +28,7 @@ name = "Moncycle.app configuration"
         [main.export.csv_sep]
         ask.en = "Separator for data export in csv format"
         ask.fr = "Séparateur pour l'export des données au format csv"
-        type = "string"
-        default = ";"
         bind = "CSV_SEP:__INSTALL_DIR__/config.php"
+        type = "string"
+        #default = ";"
+        
