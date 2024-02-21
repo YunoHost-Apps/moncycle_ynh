@@ -9,9 +9,10 @@ services = [ 'php8.3-fpm']
       [main.comptes.creation_compte]
       ask.en = "Enable account creation"
       ask.fr = "Permettre la création de nouveaux comptes"
-      type = "select"
-      choices = ["true", "false"]
-      default = "true"
+      type = "boolean"
+      yes = true
+      no = false
+      default = true
       help = "Don't disable account creation before creating one for yourself !"
         
       [main.comptes.connexion_compte]
