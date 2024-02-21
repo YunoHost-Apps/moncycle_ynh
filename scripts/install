@@ -13,6 +13,10 @@ creation_compte="true"
 connexion_compte="true"
 separateur_csv=";"
 
+ynh_app_setting_set --app=$app --key=creation_compte --value=$creation_compte
+ynh_app_setting_set --app=$app --key=connexion_compte --value=$connexion_compte
+ynh_app_setting_set --app=$app --key=separateur_csv --value=$separateur_csv
+
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
