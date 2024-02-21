@@ -48,6 +48,9 @@ set__connexion_compte(){
 	sed -i "s/define(\"CONNEXION_COMPTE\",.*);/define(\"CONNEXION_COMPTE\", $connexion_compte);/" "$install_dir/config.php"
 }
 
+get__statistics(){
+	echo "$(/usr/bin/php8.3 --define apc.enable_cli=1 stat.php)"
+}
 
 #=================================================
 # GENERIC FINALIZATION

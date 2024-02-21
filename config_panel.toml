@@ -32,3 +32,12 @@ services = [ 'php8.3-fpm']
       type = "tags"
       choices = [';',',']
       default = ';'
+
+   [main.statistics]
+   name = "Statistiques"
+
+      [main.statistics.statistics]
+      ask.en = "Statistics for the server"
+      ask.fr = "Statistiques du serveur"
+      type = "display_text"
+      readonly = true
