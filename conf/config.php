@@ -20,8 +20,8 @@ define("SMTP_PORT", 25);
 define("SMTP_MAIL", "__APP__@__DOMAIN__");
 define("SMTP_PASSWORD", "");
 
-define("CREATION_COMPTE", true);
-define("CONNEXION_COMPTE", true);
+define("CREATION_COMPTE", __CREATION_COMPTE__);
+define("CONNEXION_COMPTE", __CONNEXION_COMPTE__);
 
 define("CSV_SEP", ";");
 
