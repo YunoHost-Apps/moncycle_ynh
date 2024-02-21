@@ -9,8 +9,8 @@
 source _common.sh
 source /usr/share/yunohost/helpers
 
-creation_compte=1
-connexion_compte=1
+creation_compte="true"
+connexion_compte="true"
 separateur_csv=";"
 
 #=================================================
