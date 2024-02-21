@@ -8,20 +8,18 @@ name = "Moncycle.app configuration"
         [main.comptes.creation_compte]
         ask.en = "Enable account creation"
         ask.fr = "Permettre la création de nouveaux comptes"
-        type = "boolean"
+        type = "select"
+        choices = ["true", "false"]
         default = "true"
-        yes = "true"
-        no = "false"
         help = "Don't disable account creation before creating one for yourself !"
         bind = "CREATION_COMPTE:__INSTALL_DIR__/config.php"
         
         [main.comptes.connexion_compte]
         ask.en = "Enable account connexion"
         ask.fr = "Permettre la connexion aux comptes"
-        type = "boolean"
+        type = "select"
+        choices = ["true", "false"]
         default = "true"
-        yes = "true"
-        no = "false"
         bind = "CONNEXION_COMPTE:__INSTALL_DIR__/config.php"
     
     [main.export]
