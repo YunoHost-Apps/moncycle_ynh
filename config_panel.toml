@@ -1,7 +1,7 @@
 version = "1.0"
 [main]
 name = "Configuration"
-services = [ 'php$phpversion']
+services = [ 'php8.3-fpm']
     
    [main.comptes]
    name = "Comptes"
