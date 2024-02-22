@@ -9,13 +9,12 @@
 source _common.sh
 source /usr/share/yunohost/helpers
 
-creation_compte=true
-ynh_app_setting_set --app=$app --key=csv_sep --value="$csv_sep"
-connexion_compte=true
-ynh_app_setting_set --app=$app --key=creation_compte --value="$creation_compte"
 csv_sep=";"
+creation_compte=true
+connexion_compte=true
+ynh_app_setting_set --app=$app --key=csv_sep --value="$csv_sep"
+ynh_app_setting_set --app=$app --key=creation_compte --value="$creation_compte"
 ynh_app_setting_set --app=$app --key=connexion_compte --value="$connexion_compte"
-
 
 
 #=================================================
