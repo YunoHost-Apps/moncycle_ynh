@@ -38,4 +38,5 @@ services = [ 'php8.3-fpm']
       [main.statistics.statistics]
       ask.en = "Statistics for the server"
       ask.fr = "Statistiques du serveur"
-      type = "display_text"
+      type = "string"
+      default ="coucou"
