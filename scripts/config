@@ -30,6 +30,7 @@ get__csv_sep(){
 
 set__csv_sep(){
 	sed -i "s/define(\"CSV_SEP\",.*);/define(\"CSV_SEP\", \"$csv_sep\");/" "$install_dir/config.php"
+	ynh_app_setting_set --app=$app --key=csv_sep --value="$csv_sep"
 }
 
 get__creation_compte(){
@@ -38,6 +39,7 @@ get__creation_compte(){
 
 set__creation_compte(){
 	sed -i "s/define(\"CREATION_COMPTE\",.*);/define(\"CREATION_COMPTE\", $creation_compte);/" "$install_dir/config.php"
+	ynh_app_setting_set --app=$app --key=creation_compte --value="$creation_compte"
 }
 
 get__connexion_compte(){
@@ -46,10 +48,12 @@ get__connexion_compte(){
 
 set__connexion_compte(){
 	sed -i "s/define(\"CONNEXION_COMPTE\",.*);/define(\"CONNEXION_COMPTE\", $connexion_compte);/" "$install_dir/config.php"
+	ynh_app_setting_set --app=$app --key=connexion_compte --value="$connexion_compte"
 }
 
 get__statistics(){
-	echo "$(pushd "$install_dir/script" && /usr/bin/php8.3 --define apc.enable_cli=1 stat.php)"
+	#echo "$(pushd "$install_dir/script" && /usr/bin/php8.3 --define apc.enable_cli=1 stat.php)"
+	echo "salut la compagnie"
 }
 
 #=================================================
