@@ -80,7 +80,7 @@ get__moncycle_app_nb_compte_actif(){
 }
 
 get__moncycle_app_pc_compte_actif(){
-	echo "$statistiques" | grep -Poi 'moncycle_app_pc_compte_actif \K.*'
+	echo $(echo "$statistiques" | grep -Poi 'moncycle_app_pc_compte_actif \K.*')"%"
 }
 
 get__moncycle_app_nb_compte_avec_totp(){
@@ -92,7 +92,7 @@ get__moncycle_app_nb_compte_actif_billings(){
 }
 
 get__moncycle_app_pc_compte_actif_billings(){
-	echo "$statistiques" | grep -Poi 'moncycle_app_pc_compte_actif_billings \K.*'
+	echo $(echo "$statistiques" | grep -Poi 'app_pc_compte_actif_billings \K.*')"%"
 }
 
 #=================================================

@@ -70,7 +70,7 @@ readonly = true
 
 [statistics.comptes.moncycle_app_pc_compte_actif]
 ask.fr = "Pourcentage de comptes actifs"
-type = "number"
+type = "string"
 readonly = true
 
 [statistics.comptes.moncycle_app_nb_compte_avec_totp]
@@ -85,7 +85,7 @@ readonly = true
 
 [statistics.comptes.moncycle_app_pc_compte_actif_billings]
 ask.fr = "Pourcentage de comptes actifs Billings"
-type = "number"
+type = "string"
 readonly = true
 
 
