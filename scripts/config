@@ -52,8 +52,7 @@ set__connexion_compte(){
 }
 
 get__statistics(){
-	#echo "$(pushd "$install_dir/script" && /usr/bin/php8.3 --define apc.enable_cli=1 stat.php)"
-	echo "salut la compagnie"
+	echo "$(pushd "$install_dir/script" && /usr/bin/php8.3 --define apc.enable_cli=1 stat.php)"
 }
 
 #=================================================
