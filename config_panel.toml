@@ -35,8 +35,56 @@ services = [ 'php8.3-fpm']
    [main.statistics]
    name = "Statistiques"
 
-      [main.statistics.statistics]
-      ask.en = "Statistics for the server"
-      ask.fr = "Statistiques du serveur"
-      type = "string"
+      [main.statistics.moncycle_app_nb_compte]
+      ask.fr = "Nombre de comptes"
+      type = "number"
       readonly = true
+
+      [main.statistics.moncycle_app_nb_session]
+      ask.fr = "Nombre de sessions"
+      type = "number"
+      readonly = true
+
+      [main.statistics.moncycle_app_visite_mensuel]
+      ask.fr = "Nombre de visites mensuelles"
+      type = "number"
+      readonly = true
+
+      [main.statistics.moncycle_app_visite_hebdo]
+      ask.fr = "Nombre de visites hebdomadaires"
+      type = "number"
+      readonly = true
+
+      [main.statistics.moncycle_app_visite_jour]
+      ask.fr = "Nombre de visites quotidiennes"
+      type = "number"
+      readonly = true
+
+      [main.statistics.moncycle_app_nb_compte_actif]
+      ask.fr = "Nombre de comptes actifs"
+      type = "number"
+      readonly = true
+
+      [main.statistics.moncycle_app_pc_compte_actif]
+      ask.fr = "Pourcentage de comptes actifs"
+      type = "number"
+      readonly = true
+
+      [main.statistics.moncycle_app_nb_compte_avec_totp]
+      ask.fr = "Nombre de comptes avec totp"
+      type = "number"
+      readonly = true
+
+      [main.statistics.moncycle_app_nb_compte_actif_billings]
+      ask.fr = "Nombre de comptes Billings actifs"
+      type = "number"
+      readonly = true
+
+      [main.statistics.moncycle_app_pc_compte_actif_billings]
+      ask.fr = "Pourcentage de comptes actifs Billings"
+      type = "number"
+      readonly = true
+
+
+
+

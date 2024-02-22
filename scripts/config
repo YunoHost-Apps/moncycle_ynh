@@ -24,6 +24,10 @@ ynh_abort_if_errors
 
 final_path=$(ynh_app_setting_get $app final_path)
 
+pushd "$install_dir/script"
+	statistiques=$(/usr/bin/php8.3 --define apc.enable_cli=1 stat.php)
+popd
+
 get__csv_sep(){
 	echo ""$(grep -oPi 'define\("CSV_SEP",[\s"]*\K[^\")]+' "$install_dir/config.php")""
 }
@@ -51,8 +55,44 @@ set__connexion_compte(){
 	ynh_app_setting_set --app=$app --key=connexion_compte --value="$connexion_compte"
 }
 
-get__statistics(){
-	echo "$(pushd "$install_dir/script" && /usr/bin/php8.3 --define apc.enable_cli=1 stat.php)"
+get__moncycle_app_nb_compte(){
+	grep 'moncycle_app_nb_compte' $statistiques
+}
+
+get__moncycle_app_nb_session(){
+	grep 'moncycle_app_nb_session' $statistiques
+}
+
+get__moncycle_app_visite_mensuel(){
+	grep 'moncycle_app_visite_mensuel' $statistiques
+}
+
+get__moncycle_app_visite_hebdo(){
+	grep 'moncycle_app_visite_hebdo' $statistiques
+}
+
+get__moncycle_app_visite_jour(){
+	grep 'moncycle_app_visite_jour' $statistiques
+}
+
+get__moncycle_app_nb_compte_actif(){
+	grep 'moncycle_app_nb_compte_actif' $statistiques
+}
+
+get__moncycle_app_pc_compte_actif(){
+	grep 'moncycle_app_pc_compte_actif' $statistiques
+}
+
+get__moncycle_app_nb_compte_avec_totp(){
+	grep 'moncycle_app_nb_compte_avec_totp' $statistiques
+}
+
+get__moncycle_app_nb_compte_actif_billings(){
+	grep 'moncycle_app_nb_compte_actif_billings' $statistiques
+}
+
+get__moncycle_app_pc_compte_actif_billings(){
+	grep 'moncycle_app_pc_compte_actif_billings' $statistiques
 }
 
 #=================================================
