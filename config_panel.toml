@@ -144,12 +144,12 @@ name = "Statistiques"
       readonly = true
 
       [statistics.comptes.moncycle_app_nb_compte_actif_billings_temp]
-      ask.fr = "Nombre de comptes Billings actifs"
+      ask.fr = "Nombre de comptes Billings avec température actifs"
       type = "number"
       readonly = true
 
       [statistics.comptes.moncycle_app_pc_compte_actif_billings_temp]
-      ask.fr = "Part de comptes actifs Billings"
+      ask.fr = "Part de comptes actifs Billings avec température"
       type = "string"
       readonly = true
 
@@ -164,12 +164,12 @@ name = "Statistiques"
       readonly = true
 
       [statistics.comptes.moncycle_app_nb_compte_actif_fertilitycare_temp]
-      ask.fr = "Nombre de comptes Fertility Care actifs"
+      ask.fr = "Nombre de comptes Fertility Care avec température actifs"
       type = "number"
       readonly = true
 
       [statistics.comptes.moncycle_app_pc_compte_actif_fertilitycare_temp]
-      ask.fr = "Part de comptes actifs Fertility Care"
+      ask.fr = "Part de comptes actifs FC avec température"
       type = "string"
       readonly = true
 
