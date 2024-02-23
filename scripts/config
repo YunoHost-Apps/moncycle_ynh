@@ -33,9 +33,9 @@ get__csv_sep(){
 }
 
 set__csv_sep(){
-	if [ $csv_sep == "Utiliser le séparateur ," ]; then
+	if [ $csv_sep = "Utiliser le séparateur ," ]; then
 		sed -i "s/define(\"CSV_SEP\",.*);/define(\"CSV_SEP\", \",\");/" "$install_dir/config.php"
-	elif [ $csv_sep == "Utiliser un espace" ]; then
+	elif [ $csv_sep = "Utiliser un espace" ]; then
 		sed -i "s/define(\"CSV_SEP\",.*);/define(\"CSV_SEP\", \" \");/" "$install_dir/config.php"
 	else
 		sed -i "s/define(\"CSV_SEP\",.*);/define(\"CSV_SEP\", \";\");/" "$install_dir/config.php"
