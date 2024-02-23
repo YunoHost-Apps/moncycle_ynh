@@ -30,7 +30,7 @@ popd
 
 get__csv_sep(){
 	separateur="$(grep -oPi 'define\("CSV_SEP",[\s"]*\K[^\")]+' "$install_dir/config.php")"
-	if [ $separateur = " "]; then
+	if [ "$separateur" == " " ]; then
 		echo "Utiliser un espace"
 	else
 		echo "Utiliser le séparateur ""separateur"
