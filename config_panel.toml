@@ -13,12 +13,12 @@ services = [ 'php8.3-fpm']
       yes = true
       no = false
       default = true
-      help = "Créez votre propre compte avant de fermer cette option !"
+      help = "N'oubliez pas de créer votre propre compte avant de fermer cette option !"
         
       [main.comptes.connexion_compte]
       ask.en = "Enable account connexion"
       ask.fr = "Permettre la connexion aux comptes"
-      help = "La connexion sera désactivée pour l'ensemble des utilisateurs de l'instance"
+      help = "La connexion sera activée ou désactivée pour l'ensemble des utilisateurs de l'instance"
       type = "boolean"
       yes = true
       no = false
@@ -124,7 +124,7 @@ name = "Statistiques"
       readonly = true
 
       [statistics.comptes.moncycle_app_pc_compte_actif]
-      ask.fr = "Pourcentage de comptes actifs"
+      ask.fr = "Part de comptes actifs"
       type = "string"
       readonly = true
 
@@ -139,7 +139,7 @@ name = "Statistiques"
       readonly = true
 
       [statistics.comptes.moncycle_app_pc_compte_actif_billings]
-      ask.fr = "Pourcentage de comptes actifs Billings"
+      ask.fr = "Part de comptes actifs Billings"
       type = "string"
       readonly = true
 
@@ -149,7 +149,7 @@ name = "Statistiques"
       readonly = true
 
       [statistics.comptes.moncycle_app_pc_compte_actif_billings_temp]
-      ask.fr = "Pourcentage de comptes actifs Billings"
+      ask.fr = "Part de comptes actifs Billings"
       type = "string"
       readonly = true
 
@@ -159,7 +159,7 @@ name = "Statistiques"
       readonly = true
 
       [statistics.comptes.moncycle_app_pc_compte_actif_fertilitycare]
-      ask.fr = "Pourcentage de comptes actifs Fertility Care"
+      ask.fr = "Part de comptes actifs Fertility Care"
       type = "string"
       readonly = true
 
@@ -169,7 +169,7 @@ name = "Statistiques"
       readonly = true
 
       [statistics.comptes.moncycle_app_pc_compte_actif_fertilitycare_temp]
-      ask.fr = "Pourcentage de comptes actifs Fertility Care"
+      ask.fr = "Part de comptes actifs Fertility Care"
       type = "string"
       readonly = true
 
