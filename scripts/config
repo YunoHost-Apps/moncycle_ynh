@@ -33,7 +33,7 @@ get__csv_sep(){
 	if [ "$separateur" == " " ]; then
 		echo "Utiliser un espace"
 	else
-		echo "Utiliser le séparateur ""separateur"
+		echo "Utiliser le séparateur ""$separateur"
 	fi
 }
 
