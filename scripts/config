@@ -106,6 +106,74 @@ get__moncycle_app_pc_compte_actif_billings(){
 	echo $(echo "$statistiques" | grep -Poi 'app_pc_compte_actif_billings \K.*')"%"
 }
 
+get__moncycle_app_nb_compte_actif_billings_temp(){
+	echo "$statistiques" | grep -Poi 'moncycle_app_nb_compte_actif_billings_temp \K.*'
+}
+
+get__moncycle_app_pc_compte_actif_billings_temp(){
+	echo $(echo "$statistiques" | grep -Poi 'app_pc_compte_actif_billings_temp \K.*')"%"
+}
+
+get__moncycle_app_nb_compte_actif_fertilitycare(){
+	echo "$statistiques" | grep -Poi 'moncycle_app_nb_compte_actif_fertilitycare \K.*'
+}
+
+get__moncycle_app_pc_compte_actif_fertilitycare(){
+	echo $(echo "$statistiques" | grep -Poi 'app_pc_compte_actif_fertilitycare \K.*')"%"
+}
+
+get__moncycle_app_nb_compte_actif_fertilitycare_temp(){
+	echo "$statistiques" | grep -Poi 'moncycle_app_nb_compte_actif_fertilitycare_temp \K.*'
+}
+
+get__moncycle_app_pc_compte_actif_fertilitycare_temp(){
+	echo $(echo "$statistiques" | grep -Poi 'app_pc_compte_actif_fertilitycare_temp \K.*')"%"
+}
+
+get__moncycle_app_nb_compte_recent(){
+	echo "$statistiques" | grep -Poi 'moncycle_app_nb_compte_recent \K.*'
+}
+
+get__moncycle_app_nb_cycle(){
+	echo "$statistiques" | grep -Poi 'moncycle_app_nb_cycle \K.*'
+}
+
+get__moncycle_app_nb_cycle_recent(){
+	echo "$statistiques" | grep -Poi 'moncycle_app_nb_cycle_recent \K.*'
+}
+
+get__moncycle_app_age_moyen(){
+	echo "$statistiques" | grep -Poi 'moncycle_app_age_moyen \K.*'
+}
+
+get__moncycle_app_age_moyen_recent(){
+	echo "$statistiques" | grep -Poi 'moncycle_app_age_moyen_recent \K.*'
+}
+
+get__moncycle_app_nb_total_observation(){
+	echo "$statistiques" | grep -Poi 'moncycle_app_nb_total_observation \K.*'
+}
+
+get__moncycle_app_nb_observation_aujourdhui(){
+	echo "$statistiques" | grep -Poi 'moncycle_app_nb_observation_aujourdhui \K.*'
+}
+
+get__moncycle_app_nb_observation_1j(){
+	echo "$statistiques" | grep -Poi 'moncycle_app_nb_observation_1j \K.*'
+}
+
+get__moncycle_app_nb_observation_5j(){
+	echo "$statistiques" | grep -Poi 'moncycle_app_nb_observation_5j \K.*'
+}
+
+get__moncycle_app_nb_observation_15j(){
+	echo "$statistiques" | grep -Poi 'moncycle_app_nb_observation_15j \K.*'
+}
+
+get__moncycle_app_nb_observation_30j(){
+	echo "$statistiques" | grep -Poi 'moncycle_app_nb_observation_30j \K.*'
+}
+
 #=================================================
 # GENERIC FINALIZATION
 #=================================================
