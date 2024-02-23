@@ -1,0 +1,180 @@
+version = "1.0"
+[main]
+name = "Configuration"
+services = [ 'php8.3-fpm']
+    
+   [main.comptes]
+   name = "Comptes"
+        
+      [main.comptes.creation_compte]
+      ask.en = "Enable account creation"
+      ask.fr = "Permettre la création de nouveaux comptes"
+      type = "boolean"
+      yes = true
+      no = false
+      default = true
+      help = "N'oubliez pas de créer votre propre compte avant de fermer cette option !"
+        
+      [main.comptes.connexion_compte]
+      ask.en = "Enable account connexion"
+      ask.fr = "Permettre la connexion aux comptes"
+      help = "La connexion sera activée ou désactivée pour l'ensemble des utilisateurs de l'instance"
+      type = "boolean"
+      yes = true
+      no = false
+      default = true
+
+   [main.export]
+   name = "Export"
+     
+      [main.export.csv_sep]
+      ask.en = "For data in csv format"
+      ask.fr = "Pour les des données au format csv"
+      type = "select"
+      choices = ["Utiliser le séparateur ;", "Utiliser le séparateur ,", "Utiliser un espace"]
+      default = "Utiliser le séparateur ;"
+
+[statistics]
+name = "Statistiques"
+
+   [statistics.usage]
+   name = "Satistiques d'usage"
+
+      [statistics.usage.moncycle_app_nb_session]
+      ask.fr = "Nombre de sessions"
+      type = "number"
+      readonly = true
+
+      [statistics.usage.moncycle_app_visite_mensuel]
+      ask.fr = "Nombre de visites mensuelles"
+      type = "number"
+      readonly = true
+
+      [statistics.usage.moncycle_app_visite_hebdo]
+      ask.fr = "Nombre de visites hebdomadaires"
+      type = "number"
+      readonly = true
+
+      [statistics.usage.moncycle_app_visite_jour]
+      ask.fr = "Nombre de visites quotidiennes"
+      type = "number"
+      readonly = true
+
+      [statistics.usage.moncycle_app_nb_cycle]
+      ask.fr = "Nombre de cycles"
+      type = "number"
+      readonly = true
+
+      [statistics.usage.moncycle_app_nb_cycle_recent]
+      ask.fr = "Nombre de cycles récents"
+      type = "number"
+      readonly = true
+
+      [statistics.usage.moncycle_app_age_moyen]
+      ask.fr = "Âge moyen"
+      type = "number"
+      readonly = true
+
+      [statistics.usage.moncycle_app_age_moyen_recent]
+      ask.fr = "Âge moyen récent"
+      type = "number"
+      readonly = true
+
+      [statistics.usage.moncycle_app_nb_total_observation]
+      ask.fr = "Nombre total d'observations"
+      type = "number"
+      readonly = true
+
+      [statistics.usage.moncycle_app_nb_observation_aujourdhui]
+      ask.fr = "Nombre d'observations aujourd'hui"
+      type = "number"
+      readonly = true
+
+      [statistics.usage.moncycle_app_nb_observation_1j]
+      ask.fr = "Nombre d'observations depuis 1 jour"
+      type = "number"
+      readonly = true
+
+      [statistics.usage.moncycle_app_nb_observation_5j]
+      ask.fr = "Nombre d'observations depuis 5 jours"
+      type = "number"
+      readonly = true
+
+      [statistics.usage.moncycle_app_nb_observation_15j]
+      ask.fr = "Nombre d'observations depuis 15 jours"
+      type = "number"
+      readonly = true
+
+      [statistics.usage.moncycle_app_nb_observation_30j]
+      ask.fr = "Nombre d'observations depuis 30 jours"
+      type = "number"
+      readonly = true
+
+   [statistics.comptes]
+   name = "Satistiques des comptes"
+
+      [statistics.comptes.moncycle_app_nb_compte]
+      ask.fr = "Nombre de comptes"
+      type = "number"
+      readonly = true
+
+      [statistics.comptes.moncycle_app_nb_compte_actif]
+      ask.fr = "Nombre de comptes actifs"
+      type = "number"
+      readonly = true
+
+      [statistics.comptes.moncycle_app_pc_compte_actif]
+      ask.fr = "Part de comptes actifs"
+      type = "string"
+      readonly = true
+
+      [statistics.comptes.moncycle_app_nb_compte_avec_totp]
+      ask.fr = "Nombre de comptes avec totp"
+      type = "number"
+      readonly = true
+
+      [statistics.comptes.moncycle_app_nb_compte_actif_billings]
+      ask.fr = "Nombre de comptes Billings actifs"
+      type = "number"
+      readonly = true
+
+      [statistics.comptes.moncycle_app_pc_compte_actif_billings]
+      ask.fr = "Part de comptes actifs Billings"
+      type = "string"
+      readonly = true
+
+      [statistics.comptes.moncycle_app_nb_compte_actif_billings_temp]
+      ask.fr = "Nombre de comptes Billings avec température actifs"
+      type = "number"
+      readonly = true
+
+      [statistics.comptes.moncycle_app_pc_compte_actif_billings_temp]
+      ask.fr = "Part de comptes actifs Billings avec température"
+      type = "string"
+      readonly = true
+
+      [statistics.comptes.moncycle_app_nb_compte_actif_fertilitycare]
+      ask.fr = "Nombre de comptes Fertility Care actifs"
+      type = "number"
+      readonly = true
+
+      [statistics.comptes.moncycle_app_pc_compte_actif_fertilitycare]
+      ask.fr = "Part de comptes actifs Fertility Care"
+      type = "string"
+      readonly = true
+
+      [statistics.comptes.moncycle_app_nb_compte_actif_fertilitycare_temp]
+      ask.fr = "Nombre de comptes Fertility Care avec température actifs"
+      type = "number"
+      readonly = true
+
+      [statistics.comptes.moncycle_app_pc_compte_actif_fertilitycare_temp]
+      ask.fr = "Part de comptes actifs FC avec température"
+      type = "string"
+      readonly = true
+
+      [statistics.comptes.moncycle_app_nb_compte_recent]
+      ask.fr = "Nombre de comptes récents"
+      type = "string"
+      readonly = true
+

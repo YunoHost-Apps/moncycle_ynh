@@ -24,10 +24,155 @@ ynh_abort_if_errors
 
 final_path=$(ynh_app_setting_get $app final_path)
 
-## import needed settings
-#creation_compte=$(ynh_app_setting_get --app="$app" --key=creation_compte)
-#connexion_compte=$(ynh_app_setting_get --app="$app" --key=connexion_compte)
-#csv_sep=$(ynh_app_setting_get --app="$app" --key=csv_sep)
+pushd "$install_dir/script"
+	statistiques="$(/usr/bin/php8.3 --define apc.enable_cli=1 stat.php)"
+popd
+
+get__csv_sep(){
+	separateur="$(grep -oPi 'define\("CSV_SEP",[\s"]*\K[^\")]+' "$install_dir/config.php")"
+	if [ "$separateur" == " " ]; then
+		echo "Utiliser un espace"
+	else
+		echo "Utiliser le séparateur ""$separateur"
+	fi
+}
+
+set__csv_sep(){
+	if [ "$csv_sep" == "Utiliser le séparateur ," ]; then
+		sed -i "s/define(\"CSV_SEP\",.*);/define(\"CSV_SEP\", \",\");/" "$install_dir/config.php"
+	elif [ "$csv_sep" == "Utiliser un espace" ]; then
+		sed -i "s/define(\"CSV_SEP\",.*);/define(\"CSV_SEP\", \" \");/" "$install_dir/config.php"
+	else
+		sed -i "s/define(\"CSV_SEP\",.*);/define(\"CSV_SEP\", \";\");/" "$install_dir/config.php"
+	fi
+	ynh_app_setting_set --app=$app --key=csv_sep --value="$csv_sep"
+}
+
+get__creation_compte(){
+	grep -oPi 'define\("CREATION_COMPTE",[\s"]*\K[^\")]+' "$install_dir/config.php"
+}
+
+set__creation_compte(){
+	sed -i "s/define(\"CREATION_COMPTE\",.*);/define(\"CREATION_COMPTE\", $creation_compte);/" "$install_dir/config.php"
+	ynh_app_setting_set --app=$app --key=creation_compte --value="$creation_compte"
+}
+
+get__connexion_compte(){
+	grep -oPi 'define\("CONNEXION_COMPTE",[\s"]*\K[^\")]+' "$install_dir/config.php"
+}
+
+set__connexion_compte(){
+	sed -i "s/define(\"CONNEXION_COMPTE\",.*);/define(\"CONNEXION_COMPTE\", $connexion_compte);/" "$install_dir/config.php"
+	ynh_app_setting_set --app=$app --key=connexion_compte --value="$connexion_compte"
+}
+
+get__moncycle_app_nb_compte(){
+	echo "$statistiques" | grep -Poi 'moncycle_app_nb_compte \K.*'
+}
+
+get__moncycle_app_nb_session(){
+	echo "$statistiques" | grep -Poi 'moncycle_app_nb_session \K.*'
+}
+
+get__moncycle_app_visite_mensuel(){
+	echo "$statistiques" | grep -Poi 'moncycle_app_visite_mensuel \K.*'
+}
+
+get__moncycle_app_visite_hebdo(){
+	echo "$statistiques" | grep -Poi 'moncycle_app_visite_hebdo \K.*'
+}
+
+get__moncycle_app_visite_jour(){
+	echo "$statistiques" | grep -Poi 'moncycle_app_visite_jour \K.*'
+}
+
+get__moncycle_app_nb_compte_actif(){
+	echo "$statistiques" | grep -Poi 'moncycle_app_nb_compte_actif \K.*'
+}
+
+get__moncycle_app_pc_compte_actif(){
+	echo $(echo "$statistiques" | grep -Poi 'moncycle_app_pc_compte_actif \K.*')"%"
+}
+
+get__moncycle_app_nb_compte_avec_totp(){
+	echo "$statistiques" | grep -Poi 'moncycle_app_nb_compte_avec_totp \K.*'
+}
+
+get__moncycle_app_nb_compte_actif_billings(){
+	echo "$statistiques" | grep -Poi 'moncycle_app_nb_compte_actif_billings \K.*'
+}
+
+get__moncycle_app_pc_compte_actif_billings(){
+	echo $(echo "$statistiques" | grep -Poi 'app_pc_compte_actif_billings \K.*')"%"
+}
+
+get__moncycle_app_nb_compte_actif_billings_temp(){
+	echo "$statistiques" | grep -Poi 'moncycle_app_nb_compte_actif_billings_temp \K.*'
+}
+
+get__moncycle_app_pc_compte_actif_billings_temp(){
+	echo $(echo "$statistiques" | grep -Poi 'app_pc_compte_actif_billings_temp \K.*')"%"
+}
+
+get__moncycle_app_nb_compte_actif_fertilitycare(){
+	echo "$statistiques" | grep -Poi 'moncycle_app_nb_compte_actif_fertilitycare \K.*'
+}
+
+get__moncycle_app_pc_compte_actif_fertilitycare(){
+	echo $(echo "$statistiques" | grep -Poi 'app_pc_compte_actif_fertilitycare \K.*')"%"
+}
+
+get__moncycle_app_nb_compte_actif_fertilitycare_temp(){
+	echo "$statistiques" | grep -Poi 'moncycle_app_nb_compte_actif_fertilitycare_temp \K.*'
+}
+
+get__moncycle_app_pc_compte_actif_fertilitycare_temp(){
+	echo $(echo "$statistiques" | grep -Poi 'app_pc_compte_actif_fertilitycare_temp \K.*')"%"
+}
+
+get__moncycle_app_nb_compte_recent(){
+	echo "$statistiques" | grep -Poi 'moncycle_app_nb_compte_recent \K.*'
+}
+
+get__moncycle_app_nb_cycle(){
+	echo "$statistiques" | grep -Poi 'moncycle_app_nb_cycle \K.*'
+}
+
+get__moncycle_app_nb_cycle_recent(){
+	echo "$statistiques" | grep -Poi 'moncycle_app_nb_cycle_recent \K.*'
+}
+
+get__moncycle_app_age_moyen(){
+	echo "$statistiques" | grep -Poi 'moncycle_app_age_moyen \K.*'
+}
+
+get__moncycle_app_age_moyen_recent(){
+	echo "$statistiques" | grep -Poi 'moncycle_app_age_moyen_recent \K.*'
+}
+
+get__moncycle_app_nb_total_observation(){
+	echo "$statistiques" | grep -Poi 'moncycle_app_nb_total_observation \K.*'
+}
+
+get__moncycle_app_nb_observation_aujourdhui(){
+	echo "$statistiques" | grep -Poi 'moncycle_app_nb_observation_aujourdhui \K.*'
+}
+
+get__moncycle_app_nb_observation_1j(){
+	echo "$statistiques" | grep -Poi 'moncycle_app_nb_observation_1j \K.*'
+}
+
+get__moncycle_app_nb_observation_5j(){
+	echo "$statistiques" | grep -Poi 'moncycle_app_nb_observation_5j \K.*'
+}
+
+get__moncycle_app_nb_observation_15j(){
+	echo "$statistiques" | grep -Poi 'moncycle_app_nb_observation_15j \K.*'
+}
+
+get__moncycle_app_nb_observation_30j(){
+	echo "$statistiques" | grep -Poi 'moncycle_app_nb_observation_30j \K.*'
+}
 
 #=================================================
 # GENERIC FINALIZATION
