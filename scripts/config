@@ -29,11 +29,17 @@ pushd "$install_dir/script"
 popd
 
 get__csv_sep(){
-	echo ""$(grep -oPi 'define\("CSV_SEP",[\s"]*\K[^\")]+' "$install_dir/config.php")""
+	echo "Utiliser le séparateur" "$(grep -oPi 'define\("CSV_SEP",[\s"]*\K[^\")]+' "$install_dir/config.php")"
 }
 
 set__csv_sep(){
-	sed -i "s/define(\"CSV_SEP\",.*);/define(\"CSV_SEP\", \"$csv_sep\");/" "$install_dir/config.php"
+	if [ $csv_sep == "Utiliser le séparateur ," ]; then
+		sed -i "s/define(\"CSV_SEP\",.*);/define(\"CSV_SEP\", \",\");/" "$install_dir/config.php"
+	elif [ $csv_sep == "Utiliser un espace" ]; then
+		sed -i "s/define(\"CSV_SEP\",.*);/define(\"CSV_SEP\", \" \");/" "$install_dir/config.php"
+	else
+		sed -i "s/define(\"CSV_SEP\",.*);/define(\"CSV_SEP\", \";\");/" "$install_dir/config.php"
+	fi
 	ynh_app_setting_set --app=$app --key=csv_sep --value="$csv_sep"
 }
 

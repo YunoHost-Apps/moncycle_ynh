@@ -27,10 +27,11 @@ services = [ 'php8.3-fpm']
    name = "Export"
      
       [main.export.csv_sep]
-      ask.en = "Separator for data export in csv format"
-      ask.fr = "Séparateur pour l'export des données au format csv"
-      type = "string"
-      default = ';'
+      ask.en = "For data in csv format"
+      ask.fr = "Pour les des données au format csv"
+      type = "select"
+      choices = ["Utiliser le séparateur ;", "Utiliser le séparateur ,", "Utiliser un espace"]
+      default = "Utiliser le séparateur ;"
 
 [statistics]
 name = "Statistiques"
