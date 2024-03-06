@@ -36,7 +36,7 @@ Rendre facile le suivi des cycles menstruels et l’application des méthodes na
 - pas de vente de données/pas de publicité
 
 
-**Version incluse :** 10.0~ynh2
+**Version incluse :** 11~ynh1
 
 **Démo :** https://tableau.moncycle.app/connexion.php?email1=demo@moncycle.app&mdp=demo
 
