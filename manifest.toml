@@ -5,7 +5,7 @@ name = "Moncycle"
 description.en = "Menstrual cycle follow-up for natural family planning"
 description.fr = "Suivi de cycle pour les méthodes naturelles de régulation de naissance"
 
-version = "11.0.1~ynh1"
+version = "11.0.2~ynh1"
 
 maintainers = ["Raoul de Limezy"]
 

@@ -79,7 +79,6 @@ pushd "$install_dir"
 	else
 		ynh_script_progression --message="No config panel migration required"
 	fi
-	ynh_script_progression --message="You shouldn't see this"
 popd
 
 #=================================================
