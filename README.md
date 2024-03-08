@@ -36,7 +36,7 @@ Make it easy to monitor menstrual cycles and apply natural methods. Billings. Sy
 - no data sales/no advertising
 **Shipped version:** 11~ynh1
 
-**Demo:** <https://tableau.moncycle.app/connexion.php?email1=demo@moncycle.app&mdp=demo>
+**Demo:** <https://tableau.moncycle.app/connexion.php?email1=demo.bill@moncycle.app&mdp=demo>
 
 ## Screenshots
 
