@@ -66,6 +66,20 @@ pushd "$install_dir"
 	fi
 	ynh_script_progression --message="You shouldn't see this"
 
+	ynh_script_progression --message="Checking if a config panel migration is needed"
+	if ynh_compare_current_package_version --comparison le --version 10.0~ynh1
+	then
+		ynh_script_progression --message="Creating config panel variables"
+		csv_sep=";"
+		creation_compte=true
+		connexion_compte=true
+		ynh_app_setting_set --app=$app --key=csv_sep --value="$csv_sep"
+		ynh_app_setting_set --app=$app --key=creation_compte --value="$creation_compte"
+		ynh_app_setting_set --app=$app --key=connexion_compte --value="$connexion_compte"
+	else
+		ynh_script_progression --message="No config panel migration required"
+	fi
+	ynh_script_progression --message="You shouldn't see this"
 popd
 
 #=================================================
