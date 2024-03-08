@@ -12,7 +12,7 @@ maintainers = ["Raoul de Limezy"]
 [upstream]
 license = "CC-BY-NC-SA-4.0"
 website = "https://moncycle.app"
-demo = "https://tableau.moncycle.app/connexion.php?email1=demo@moncycle.app&mdp=demo"
+demo = "https://tableau.moncycle.app/connexion.php?email1=demo.bill@moncycle.app&mdp=demo"
 code = "https://github.com/jean-io/moncycle.app"
 
 [integration]
