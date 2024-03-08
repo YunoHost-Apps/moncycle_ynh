@@ -35,10 +35,9 @@ Rendre facile le suivi des cycles menstruels et l’application des méthodes na
 - envoi par mail automatique des cycles
 - pas de vente de données/pas de publicité
 
+**Version incluse :** 11~ynh1
 
-**Version incluse :** 10.0~ynh2
-
-**Démo :** https://tableau.moncycle.app/connexion.php?email1=demo@moncycle.app&mdp=demo
+**Démo :** <https://tableau.moncycle.app/connexion.php?email1=demo.bill@moncycle.app&mdp=demo>
 
 ## Captures d’écran
 
@@ -46,10 +45,10 @@ Rendre facile le suivi des cycles menstruels et l’application des méthodes na
 
 ## Documentations et ressources
 
-* Site officiel de l’app : <https://moncycle.app>
-* Dépôt de code officiel de l’app : <https://github.com/jean-io/moncycle.app>
-* YunoHost Store: <https://apps.yunohost.org/app/moncycle>
-* Signaler un bug : <https://github.com/YunoHost-Apps/moncycle_ynh/issues>
+- Site officiel de l’app : <https://moncycle.app>
+- Dépôt de code officiel de l’app : <https://github.com/jean-io/moncycle.app>
+- YunoHost Store : <https://apps.yunohost.org/app/moncycle>
+- Signaler un bug : <https://github.com/YunoHost-Apps/moncycle_ynh/issues>
 
 ## Informations pour les développeurs
 
