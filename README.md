@@ -34,10 +34,9 @@ Make it easy to monitor menstrual cycles and apply natural methods. Billings. Sy
 - the same account on several devices
 - automatic sending of cycles by email
 - no data sales/no advertising
+**Shipped version:** 11.0.1~ynh1
 
-**Shipped version:** 10.0~ynh2
-
-**Demo:** https://tableau.moncycle.app/connexion.php?email1=demo@moncycle.app&mdp=demo
+**Demo:** <https://tableau.moncycle.app/connexion.php?email1=demo.bill@moncycle.app&mdp=demo>
 
 ## Screenshots
 
@@ -45,10 +44,10 @@ Make it easy to monitor menstrual cycles and apply natural methods. Billings. Sy
 
 ## Documentation and resources
 
-* Official app website: <https://moncycle.app>
-* Upstream app code repository: <https://github.com/jean-io/moncycle.app>
-* YunoHost Store: <https://apps.yunohost.org/app/moncycle>
-* Report a bug: <https://github.com/YunoHost-Apps/moncycle_ynh/issues>
+- Official app website: <https://moncycle.app>
+- Upstream app code repository: <https://github.com/jean-io/moncycle.app>
+- YunoHost Store: <https://apps.yunohost.org/app/moncycle>
+- Report a bug: <https://github.com/YunoHost-Apps/moncycle_ynh/issues>
 
 ## Developer info
 
