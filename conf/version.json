@@ -1,6 +1,6 @@
 {
     "app": "moncycle.app",
-    "version": "10.0~ynh2",
-    "build": "2024-02-21",
-    "commit": "6e19865"
+    "version": "11.0.1~ynh1",
+    "build": "2024-03-08",
+    "commit": "98bedec"
 }
