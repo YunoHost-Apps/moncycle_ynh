@@ -35,7 +35,7 @@ Rendre facile le suivi des cycles menstruels et l’application des méthodes na
 - envoi par mail automatique des cycles
 - pas de vente de données/pas de publicité
 
-**Version incluse :** 11.0.2~ynh1
+**Version incluse :** 12~ynh1
 
 **Démo :** <https://tableau.moncycle.app/connexion.php?email1=demo.bill@moncycle.app&mdp=demo>
 
@@ -56,7 +56,7 @@ Merci de faire vos pull request sur la [branche testing](https://github.com/Yuno
 
 Pour essayer la branche testing, procédez comme suit.
 
-``` bash
+```bash
 sudo yunohost app install https://github.com/YunoHost-Apps/moncycle_ynh/tree/testing --debug
 ou
 sudo yunohost app upgrade moncycle -u https://github.com/YunoHost-Apps/moncycle_ynh/tree/testing --debug
