@@ -9,7 +9,7 @@ It shall NOT be edited by hand.
 
 [![Install Moncycle with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=moncycle)
 
-*[Read this README is other languages.](./ALL_README.md)*
+*[Read this README in other languages.](./ALL_README.md)*
 
 > *This package allows you to install Moncycle quickly and simply on a YunoHost server.*  
 > *If you don't have YunoHost, please consult [the guide](https://yunohost.org/install) to learn how to install it.*
@@ -35,7 +35,7 @@ Make it easy to monitor menstrual cycles and apply natural methods. Billings. Sy
 - automatic sending of cycles by email
 - no data sales/no advertising
 
-**Shipped version:** 11.0.2~ynh1
+**Shipped version:** 13~ynh1
 
 **Demo:** <https://tableau.moncycle.app/connexion.php?email1=demo.bill@moncycle.app&mdp=demo>
 
