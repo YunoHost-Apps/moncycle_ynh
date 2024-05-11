@@ -1,23 +1,17 @@
 diff --git a/www_data/lib/mail.php b/www_data/lib/mail.php
-index 9b58b50..0112cc5 100644
+index fc2246e..2e060e3 100644
 --- a/www_data/lib/mail.php
 +++ b/www_data/lib/mail.php
-@@ -12,16 +12,14 @@ use PHPMailer\PHPMailer\PHPMailer;
+@@ -15,10 +15,10 @@ function mail_init(){
  
- function mail_init(){
- 	$mail = new PHPMailer();
--
- 	$mail->isSMTP();
- 	$mail->Host       = SMTP_HOST;
--	$mail->SMTPAuth   = true;
-+	$mail->SMTPAuth   = false;
- 	$mail->Username   = SMTP_MAIL;
- 	$mail->Password   = SMTP_PASSWORD;
--	$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-+	$mail->SMTPSecure = false;
- 	$mail->Port       = SMTP_PORT;
- 	$mail->CharSet    = 'UTF-8';
--
- 	$mail->setFrom(SMTP_MAIL, 'moncycle.app');
- 	return $mail;
- }
+        $mail->isSMTP();
+        $mail->Host       = SMTP_HOST;
+-       $mail->SMTPAuth   = true;
++       $mail->SMTPAuth   = false;
+        $mail->Username   = SMTP_MAIL;
+        $mail->Password   = SMTP_PASSWORD;
+-       $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
++       $mail->SMTPSecure = false;
+        $mail->Port       = SMTP_PORT;
+        $mail->CharSet    = 'UTF-8';
+ 
