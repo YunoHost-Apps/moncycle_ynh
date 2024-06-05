@@ -3,7 +3,7 @@
 请勿手动编辑。
 -->
 
-# YunoHost 上的 Moncycle
+# YunoHost 的 Moncycle
 
 [![集成程度](https://dash.yunohost.org/integration/moncycle.svg)](https://dash.yunohost.org/appci/app/moncycle) ![工作状态](https://ci-apps.yunohost.org/ci/badges/moncycle.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/moncycle.maintain.svg)
 
@@ -35,7 +35,7 @@ Make it easy to monitor menstrual cycles and apply natural methods. Billings. Sy
 - automatic sending of cycles by email
 - no data sales/no advertising
 
-**分发版本：** 13~ynh5
+**分发版本：** 13~ynh1
 
 **演示：** <https://tableau.moncycle.app/connexion.php?email1=demo.bill@moncycle.app&mdp=demo>
 
