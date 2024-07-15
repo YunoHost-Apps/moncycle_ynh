@@ -5,7 +5,7 @@ Il NE doit PAS être modifié à la main.
 
 # Moncycle pour YunoHost
 
-[![Niveau d’intégration](https://dash.yunohost.org/integration/moncycle.svg)](https://dash.yunohost.org/appci/app/moncycle) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/moncycle.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/moncycle.maintain.svg)
+[![Niveau d’intégration](https://dash.yunohost.org/integration/moncycle.svg)](https://ci-apps.yunohost.org/ci/apps/moncycle/) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/moncycle.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/moncycle.maintain.svg)
 
 [![Installer Moncycle avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=moncycle)
 
@@ -36,7 +36,7 @@ Rendre facile le suivi des cycles menstruels et l’application des méthodes na
 - pas de vente de données/pas de publicité
 
 
-**Version incluse :** 13~ynh5
+**Version incluse :** 14~ynh1
 
 **Démo :** <https://tableau.moncycle.app/connexion.php?email1=demo.bill@moncycle.app&mdp=demo>
 

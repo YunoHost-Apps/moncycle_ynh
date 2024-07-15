@@ -46,6 +46,8 @@ pushd "$install_dir"
 		ynh_mysql_connect_as --user=$db_user --password=$db_pwd --database=$db_name < migrate_7.0.6.sql
 		ynh_add_config --template="../conf/migrate_9.0.3.sql" --destination="$install_dir/migrate_9.0.3.sql"
 		ynh_mysql_connect_as --user=$db_user --password=$db_pwd --database=$db_name < migrate_9.0.3.sql
+		ynh_add_config --template="../conf/migrate_13.0.6.sql" --destination="$install_dir/migrate_13.0.6.sql"
+		ynh_mysql_connect_as --user=$db_user --password=$db_pwd --database=$db_name < migrate_13.0.6.sql
 	else
 		if ynh_compare_current_package_version --comparison le --version 7.0~ynh6
 		then
@@ -54,13 +56,23 @@ pushd "$install_dir"
 			ynh_mysql_connect_as --user=$db_user --password=$db_pwd --database=$db_name < migrate_7.0.6.sql
 			ynh_add_config --template="../conf/migrate_9.0.3.sql" --destination="$install_dir/migrate_9.0.3.sql"
 			ynh_mysql_connect_as --user=$db_user --password=$db_pwd --database=$db_name < migrate_9.0.3.sql
+			ynh_add_config --template="../conf/migrate_13.0.6.sql" --destination="$install_dir/migrate_13.0.6.sql"
+			ynh_mysql_connect_as --user=$db_user --password=$db_pwd --database=$db_name < migrate_13.0.6.sql
 		else
 			if ynh_compare_current_package_version --comparison le --version 9.0~ynh3
 			then
 				ynh_add_config --template="../conf/migrate_9.0.3.sql" --destination="$install_dir/migrate_9.0.3.sql"
 				ynh_mysql_connect_as --user=$db_user --password=$db_pwd --database=$db_name < migrate_9.0.3.sql
+				ynh_add_config --template="../conf/migrate_13.0.6.sql" --destination="$install_dir/migrate_13.0.6.sql"
+				ynh_mysql_connect_as --user=$db_user --password=$db_pwd --database=$db_name < migrate_13.0.6.sql
 			else
-				ynh_script_progression --message="7.0.6 to 8.0 database migration not required since package > 7.0.6"
+				if ynh_compare_current_package_version --comparison le --version 13~ynh6
+				then
+					ynh_add_config --template="../conf/migrate_13.0.6.sql" --destination="$install_dir/migrate_13.0.6.sql"
+					ynh_mysql_connect_as --user=$db_user --password=$db_pwd --database=$db_name < migrate_13.0.6.sql
+				else
+					ynh_script_progression --message="No migrations required since package > 13.0.6"
+				fi
 			fi
 		fi
 	fi
