@@ -10,20 +10,15 @@ ynh_script_progression "Upgrading source files..."
 
 # Move config.php to temp folder
 
-# Can't use the --keep="config.php" option
 pushd "$install_dir"
 	ynh_hide_warnings mv ./config.php /tmp/
 popd
 
-# Download, check integrity, uncompress and patch the source from app.src
 ynh_setup_source --dest_dir="$install_dir" --full_replace
 
 ynh_hide_warnings mkdir "$install_dir/soap_cache"
 ynh_hide_warnings mkdir "$install_dir/composer"
 
-#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 750 "$install_dir"
-#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod -R o-rwx "$install_dir"
-#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown -R $app:www-data "$install_dir"
 pushd "$install_dir"
 	ynh_hide_warnings mv ./www_data/* .
 	ynh_hide_warnings mv /tmp/config.php .
@@ -88,10 +83,8 @@ pushd "$install_dir"
 popd
 
 #=================================================
- # SPECIFIC SETUP
- #=================================================
- # INSTALL COMPOSER DEPENDENCIES
- #=================================================
+# INSTALL COMPOSER DEPENDENCIES
+#=================================================
  ynh_script_progression "Installing composer dependencies..."
 
  ynh_composer_install
@@ -107,15 +100,11 @@ ynh_hide_warnings curl -o "$install_dir/vendor/chartjs"/chart.umd.js.map https:/
 #=================================================
 ynh_script_progression "Upgrading PHP-FPM configuration..."
 
-# Create a dedicated PHP-FPM config
 ynh_config_add_phpfpm
 
-# Create a dedicated NGINX config
 ynh_config_add_nginx
 
 ynh_config_add --template="moncycleapp.cron" --destination="/etc/cron.d/$app"
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown root: "/etc/cron.d/$app"
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 644 "/etc/cron.d/$app"
 
 #=================================================
 # ADD A CONFIGURATION
@@ -123,9 +112,6 @@ ynh_config_add --template="moncycleapp.cron" --destination="/etc/cron.d/$app"
 ynh_script_progression "Adding $app's configuration..."
 
 ynh_config_add --template="config.php" --destination="$install_dir/config.php"
-
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 400 "$install_dir/config.php"
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown $app:$app "$install_dir/config.php"
 
 # Remove old version file and replace it
 ynh_safe_rm "$install_dir/api/version.json"
