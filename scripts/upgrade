@@ -1,140 +1,121 @@
 #!/bin/bash
 
-#=================================================
-# GENERIC START
-#=================================================
-# IMPORT GENERIC HELPERS
-#=================================================
-
 source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
-ynh_script_progression --message="Upgrading source files..." --weight=1
+ynh_script_progression "Upgrading source files..."
 
-# Move config.php to temp folder 
-# Can't use the --keep="config.php" option
+# Move config.php to temp folder
+
 pushd "$install_dir"
-	ynh_exec_warn_less mv ./config.php /tmp/
+	ynh_hide_warnings mv ./config.php /tmp/
 popd
 
-# Download, check integrity, uncompress and patch the source from app.src
-ynh_setup_source --dest_dir="$install_dir" --full_replace=1
+ynh_setup_source --dest_dir="$install_dir" --full_replace
 
-ynh_exec_warn_less mkdir "$install_dir/soap_cache"
-ynh_exec_warn_less mkdir "$install_dir/composer"
-
-chmod 750 "$install_dir"
-chmod -R o-rwx "$install_dir"
-chown -R $app:www-data "$install_dir"
+ynh_hide_warnings mkdir "$install_dir/soap_cache"
+ynh_hide_warnings mkdir "$install_dir/composer"
 
 pushd "$install_dir"
-	ynh_exec_warn_less mv ./www_data/* .
-	ynh_exec_warn_less mv /tmp/config.php .
+	ynh_hide_warnings mv ./www_data/* .
+	ynh_hide_warnings mv /tmp/config.php .
 
-	ynh_mysql_connect_as --user=$db_user --password=$db_pwd --database=$db_name < db/demo.sql
+	ynh_mysql_db_shell < db/demo.sql
 
-	ynh_script_progression --message="Checking if a database migration is needed"
-	if ynh_compare_current_package_version --comparison le --version 7.0~ynh5
+	ynh_script_progression "Checking if a database migration is needed"
+	if ynh_app_upgrading_from_version_before_or_equal_to 7.0~ynh5
 	then
-		ynh_script_progression --message="7.0.5 to 8.0 database migration required, migrating"
-		ynh_add_config --template="../conf/migrate_7.0.5.sql" --destination="$install_dir/migrate_7.0.5.sql"
-		ynh_mysql_connect_as --user=$db_user --password=$db_pwd --database=$db_name < migrate_7.0.5.sql
-		ynh_add_config --template="../conf/migrate_7.0.6.sql" --destination="$install_dir/migrate_7.0.6.sql"
-		ynh_mysql_connect_as --user=$db_user --password=$db_pwd --database=$db_name < migrate_7.0.6.sql
-		ynh_add_config --template="../conf/migrate_9.0.3.sql" --destination="$install_dir/migrate_9.0.3.sql"
-		ynh_mysql_connect_as --user=$db_user --password=$db_pwd --database=$db_name < migrate_9.0.3.sql
-		ynh_add_config --template="../conf/migrate_13.0.6.sql" --destination="$install_dir/migrate_13.0.6.sql"
-		ynh_mysql_connect_as --user=$db_user --password=$db_pwd --database=$db_name < migrate_13.0.6.sql
+		ynh_script_progression "7.0.5 to 8.0 database migration required, migrating"
+		ynh_config_add --template="migrate_7.0.5.sql" --destination="$install_dir/migrate_7.0.5.sql"
+		ynh_mysql_db_shell < migrate_7.0.5.sql
+		ynh_config_add --template="migrate_7.0.6.sql" --destination="$install_dir/migrate_7.0.6.sql"
+		ynh_mysql_db_shell < migrate_7.0.6.sql
+		ynh_config_add --template="migrate_9.0.3.sql" --destination="$install_dir/migrate_9.0.3.sql"
+		ynh_mysql_db_shell < migrate_9.0.3.sql
+		ynh_config_add --template="migrate_13.0.6.sql" --destination="$install_dir/migrate_13.0.6.sql"
+		ynh_mysql_db_shell < migrate_13.0.6.sql
 	else
-		if ynh_compare_current_package_version --comparison le --version 7.0~ynh6
+		if ynh_app_upgrading_from_version_before_or_equal_to 7.0~ynh6
 		then
-			ynh_script_progression --message="7.0.6 to 8.0 database migration required, migrating"
-			ynh_add_config --template="../conf/migrate_7.0.6.sql" --destination="$install_dir/migrate_7.0.6.sql"
-			ynh_mysql_connect_as --user=$db_user --password=$db_pwd --database=$db_name < migrate_7.0.6.sql
-			ynh_add_config --template="../conf/migrate_9.0.3.sql" --destination="$install_dir/migrate_9.0.3.sql"
-			ynh_mysql_connect_as --user=$db_user --password=$db_pwd --database=$db_name < migrate_9.0.3.sql
-			ynh_add_config --template="../conf/migrate_13.0.6.sql" --destination="$install_dir/migrate_13.0.6.sql"
-			ynh_mysql_connect_as --user=$db_user --password=$db_pwd --database=$db_name < migrate_13.0.6.sql
+			ynh_script_progression "7.0.6 to 8.0 database migration required, migrating"
+			ynh_config_add --template="migrate_7.0.6.sql" --destination="$install_dir/migrate_7.0.6.sql"
+			ynh_mysql_db_shell < migrate_7.0.6.sql
+			ynh_config_add --template="migrate_9.0.3.sql" --destination="$install_dir/migrate_9.0.3.sql"
+			ynh_mysql_db_shell < migrate_9.0.3.sql
+			ynh_config_add --template="migrate_13.0.6.sql" --destination="$install_dir/migrate_13.0.6.sql"
+			ynh_mysql_db_shell < migrate_13.0.6.sql
 		else
-			if ynh_compare_current_package_version --comparison le --version 9.0~ynh3
+			if ynh_app_upgrading_from_version_before_or_equal_to 9.0~ynh3
 			then
-				ynh_add_config --template="../conf/migrate_9.0.3.sql" --destination="$install_dir/migrate_9.0.3.sql"
-				ynh_mysql_connect_as --user=$db_user --password=$db_pwd --database=$db_name < migrate_9.0.3.sql
-				ynh_add_config --template="../conf/migrate_13.0.6.sql" --destination="$install_dir/migrate_13.0.6.sql"
-				ynh_mysql_connect_as --user=$db_user --password=$db_pwd --database=$db_name < migrate_13.0.6.sql
+				ynh_config_add --template="migrate_9.0.3.sql" --destination="$install_dir/migrate_9.0.3.sql"
+				ynh_mysql_db_shell < migrate_9.0.3.sql
+				ynh_config_add --template="migrate_13.0.6.sql" --destination="$install_dir/migrate_13.0.6.sql"
+				ynh_mysql_db_shell < migrate_13.0.6.sql
 			else
-				if ynh_compare_current_package_version --comparison le --version 13~ynh6
+				if ynh_app_upgrading_from_version_before_or_equal_to 13~ynh6
 				then
-					ynh_add_config --template="../conf/migrate_13.0.6.sql" --destination="$install_dir/migrate_13.0.6.sql"
-					ynh_mysql_connect_as --user=$db_user --password=$db_pwd --database=$db_name < migrate_13.0.6.sql
+					ynh_config_add --template="migrate_13.0.6.sql" --destination="$install_dir/migrate_13.0.6.sql"
+					ynh_mysql_db_shell < migrate_13.0.6.sql
 				else
-					ynh_script_progression --message="No migrations required since package > 13.0.6"
+					ynh_script_progression "No migrations required since package > 13.0.6"
 				fi
 			fi
 		fi
 	fi
-	ynh_script_progression --message="You shouldn't see this"
+	ynh_script_progression "You shouldn't see this"
 
-	ynh_script_progression --message="Checking if a config panel migration is needed"
-	if ynh_compare_current_package_version --comparison le --version 10.0~ynh1
+	ynh_script_progression "Checking if a config panel migration is needed"
+	if ynh_app_upgrading_from_version_before_or_equal_to 10.0~ynh1
 	then
-		ynh_script_progression --message="Creating config panel variables"
+		ynh_script_progression "Creating config panel variables"
 		csv_sep=";"
 		creation_compte=true
 		connexion_compte=true
-		ynh_app_setting_set --app=$app --key=csv_sep --value="$csv_sep"
-		ynh_app_setting_set --app=$app --key=creation_compte --value="$creation_compte"
-		ynh_app_setting_set --app=$app --key=connexion_compte --value="$connexion_compte"
+		ynh_app_setting_set --key=csv_sep --value="$csv_sep"
+		ynh_app_setting_set --key=creation_compte --value="$creation_compte"
+		ynh_app_setting_set --key=connexion_compte --value="$connexion_compte"
 	else
-		ynh_script_progression --message="No config panel migration required"
+		ynh_script_progression "No config panel migration required"
 	fi
 popd
 
 #=================================================
- # SPECIFIC SETUP
- #=================================================
- # INSTALL COMPOSER DEPENDENCIES
- #=================================================
- ynh_script_progression --message="Installing composer dependencies..." --weight=1
+# INSTALL COMPOSER DEPENDENCIES
+#=================================================
+ ynh_script_progression "Installing composer dependencies..."
 
- ynh_exec_warn_less ynh_install_composer --phpversion="$phpversion" --composerversion="$YNH_COMPOSER_VERSION" --workdir="$install_dir"
+ ynh_composer_install
+ynh_composer_exec install --no-dev
 
 # worckaround while https://github.com/chartjs/Chart.js/issues/11478 is not fixed
-ynh_exec_warn_less mkdir "$install_dir/vendor/chartjs"
-ynh_exec_warn_less curl -o "$install_dir/vendor/chartjs"/chart.js https://cdn.jsdelivr.net/npm/chart.js
-ynh_exec_warn_less curl -o "$install_dir/vendor/chartjs"/chart.umd.js.map https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js.map
+ynh_hide_warnings mkdir "$install_dir/vendor/chartjs"
+ynh_hide_warnings curl -o "$install_dir/vendor/chartjs"/chart.js https://cdn.jsdelivr.net/npm/chart.js
+ynh_hide_warnings curl -o "$install_dir/vendor/chartjs"/chart.umd.js.map https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js.map
 
 #=================================================
 # PHP-FPM CONFIGURATION
 #=================================================
-ynh_script_progression --message="Upgrading PHP-FPM configuration..." --weight=1
+ynh_script_progression "Upgrading PHP-FPM configuration..."
 
-# Create a dedicated PHP-FPM config
-ynh_add_fpm_config
+ynh_config_add_phpfpm
 
-# Create a dedicated NGINX config
-ynh_add_nginx_config
+ynh_config_add_nginx
 
-ynh_add_config --template="../conf/moncycleapp.cron" --destination="/etc/cron.d/$app"
-chown root: "/etc/cron.d/$app"
-chmod 644 "/etc/cron.d/$app"
+ynh_config_add --template="moncycleapp.cron" --destination="/etc/cron.d/$app"
 
 #=================================================
 # ADD A CONFIGURATION
 #=================================================
-ynh_script_progression --message="Adding a configuration file..." --weight=1
+ynh_script_progression "Adding $app's configuration..."
 
-ynh_add_config --template="../conf/config.php" --destination="$install_dir/config.php"
-
-chmod 400 "$install_dir/config.php"
-chown $app:$app "$install_dir/config.php"
+ynh_config_add --template="config.php" --destination="$install_dir/config.php"
 
 # Remove old version file and replace it
-ynh_secure_remove --file="$install_dir/api/version.json"
-ynh_add_config --template="../conf/version.json" --destination="$install_dir/api/version.json"
+ynh_safe_rm "$install_dir/api/version.json"
+ynh_config_add --template="version.json" --destination="$install_dir/api/version.json"
 chmod 655 "$install_dir/api/version.json"
 chown $app:www-data "$install_dir/api/version.json"
 
@@ -142,4 +123,4 @@ chown $app:www-data "$install_dir/api/version.json"
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Upgrade of $app completed" --last
+ynh_script_progression "Upgrade of $app completed"
