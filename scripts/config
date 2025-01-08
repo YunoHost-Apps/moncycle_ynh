@@ -18,7 +18,7 @@ source /usr/share/yunohost/helpers
 # RETRIEVE ARGUMENTS
 #=================================================
 
-final_path=$(ynh_app_setting_get $app final_path)
+install_dir=$(ynh_app_setting_get $app install_dir)
 
 pushd "$install_dir/script"
 	statistiques="$(/usr/bin/php8.3 --define apc.enable_cli=1 stat.php)"
