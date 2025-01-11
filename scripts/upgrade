@@ -99,9 +99,10 @@ popd
 #=================================================
 # INSTALL COMPOSER DEPENDENCIES
 #=================================================
- ynh_script_progression "Installing composer dependencies..."
+ynh_script_progression "Installing composer dependencies..."
 
- ynh_composer_install
+ynh_composer_install
+ynh_composer_exec update
 ynh_composer_exec install --no-dev
 
 # worckaround while https://github.com/chartjs/Chart.js/issues/11478 is not fixed
