@@ -5,7 +5,9 @@ NON debe editarse manualmente.
 
 # Moncycle para YunoHost
 
-[![Nivel de integración](https://dash.yunohost.org/integration/moncycle.svg)](https://ci-apps.yunohost.org/ci/apps/moncycle/) ![Estado de funcionamento](https://ci-apps.yunohost.org/ci/badges/moncycle.status.svg) ![Estado de mantemento](https://ci-apps.yunohost.org/ci/badges/moncycle.maintain.svg)
+[![Nivel de integración](https://apps.yunohost.org/badge/integration/moncycle)](https://ci-apps.yunohost.org/ci/apps/moncycle/)
+![Estado de funcionamento](https://apps.yunohost.org/badge/state/moncycle)
+![Estado de mantemento](https://apps.yunohost.org/badge/maintained/moncycle)
 
 [![Instalar Moncycle con YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=moncycle)
 
@@ -35,7 +37,7 @@ Make it easy to monitor menstrual cycles and apply natural methods. Billings. Sy
 - automatic sending of cycles by email
 - no data sales/no advertising
 
-**Versión proporcionada:** 14~ynh1
+**Versión proporcionada:** 14~ynh2
 
 **Demo:** <https://tableau.moncycle.app/connexion.php?email1=demo.bill@moncycle.app&mdp=demo>
 

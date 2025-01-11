@@ -72,12 +72,12 @@ name = "Statistiques"
 
       [statistics.usage.moncycle_app_age_moyen]
       ask.fr = "Âge moyen"
-      type = "number"
+      type = "string"
       readonly = true
 
       [statistics.usage.moncycle_app_age_moyen_recent]
       ask.fr = "Âge moyen récent"
-      type = "number"
+      type = "string"
       readonly = true
 
       [statistics.usage.moncycle_app_nb_total_observation]
