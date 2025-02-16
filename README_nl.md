@@ -37,7 +37,7 @@ Make it easy to monitor menstrual cycles and apply natural methods. Billings. Sy
 - automatic sending of cycles by email
 - no data sales/no advertising
 
-**Geleverde versie:** 14~ynh2
+**Geleverde versie:** 14~ynh4
 
 **Demo:** <https://tableau.moncycle.app/connexion.php?email1=demo.bill@moncycle.app&mdp=demo>
 
