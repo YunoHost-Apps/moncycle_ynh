@@ -26,7 +26,7 @@ pushd "$install_dir"
 	ynh_script_progression "Checking if a database migration is needed"
 	if ynh_app_upgrading_from_version_before_or_equal_to 7.0~ynh5
 	then
-		ynh_script_progression "7.0.5 to 8.0 database migration required, migrating"
+		ynh_script_progression "7.0.5 to 14.0.2 database migration required, migrating"
 		ynh_config_add --template="migrate_7.0.5.sql" --destination="$install_dir/migrate_7.0.5.sql"
 		ynh_mysql_db_shell < migrate_7.0.5.sql
 		ynh_config_add --template="migrate_7.0.6.sql" --destination="$install_dir/migrate_7.0.6.sql"
@@ -35,44 +35,47 @@ pushd "$install_dir"
 		ynh_mysql_db_shell < migrate_9.0.3.sql
 		ynh_config_add --template="migrate_13.0.6.sql" --destination="$install_dir/migrate_13.0.6.sql"
 		ynh_mysql_db_shell < migrate_13.0.6.sql
-		ynh_config_add --template="migrate_14.0.2.sql" --destination="$install_dir/migrate_14.0.2.sql"
-		ynh_mysql_db_shell < migrate_14.0.2.sql
+		#ynh_config_add --template="migrate_14.0.2.sql" --destination="$install_dir/migrate_14.0.2.sql"
+		#ynh_mysql_db_shell < migrate_14.0.2.sql
 	else
 		if ynh_app_upgrading_from_version_before_or_equal_to 7.0~ynh6
 		then
-			ynh_script_progression "7.0.6 to 8.0 database migration required, migrating"
+			ynh_script_progression "7.0.6 to 14.0.2 database migration required, migrating"
 			ynh_config_add --template="migrate_7.0.6.sql" --destination="$install_dir/migrate_7.0.6.sql"
 			ynh_mysql_db_shell < migrate_7.0.6.sql
 			ynh_config_add --template="migrate_9.0.3.sql" --destination="$install_dir/migrate_9.0.3.sql"
 			ynh_mysql_db_shell < migrate_9.0.3.sql
 			ynh_config_add --template="migrate_13.0.6.sql" --destination="$install_dir/migrate_13.0.6.sql"
 			ynh_mysql_db_shell < migrate_13.0.6.sql
-			ynh_config_add --template="migrate_14.0.2.sql" --destination="$install_dir/migrate_14.0.2.sql"
-			ynh_mysql_db_shell < migrate_14.0.2.sql
+			#ynh_config_add --template="migrate_14.0.2.sql" --destination="$install_dir/migrate_14.0.2.sql"
+			#ynh_mysql_db_shell < migrate_14.0.2.sql
 		else
 			if ynh_app_upgrading_from_version_before_or_equal_to 9.0~ynh3
 			then
+				ynh_script_progression "9.0.3 to 14.0.2 database migration required, migrating"
 				ynh_config_add --template="migrate_9.0.3.sql" --destination="$install_dir/migrate_9.0.3.sql"
 				ynh_mysql_db_shell < migrate_9.0.3.sql
 				ynh_config_add --template="migrate_13.0.6.sql" --destination="$install_dir/migrate_13.0.6.sql"
 				ynh_mysql_db_shell < migrate_13.0.6.sql
-				ynh_config_add --template="migrate_14.0.2.sql" --destination="$install_dir/migrate_14.0.2.sql"
-				ynh_mysql_db_shell < migrate_14.0.2.sql
+				#ynh_config_add --template="migrate_14.0.2.sql" --destination="$install_dir/migrate_14.0.2.sql"
+				#ynh_mysql_db_shell < migrate_14.0.2.sql
 			else
 				if ynh_app_upgrading_from_version_before_or_equal_to 13~ynh6
 				then
+					ynh_script_progression "13.0.6 to 14.0.2 database migration required, migrating"
 					ynh_config_add --template="migrate_13.0.6.sql" --destination="$install_dir/migrate_13.0.6.sql"
 					ynh_mysql_db_shell < migrate_13.0.6.sql
-					ynh_config_add --template="migrate_14.0.2.sql" --destination="$install_dir/migrate_14.0.2.sql"
-					ynh_mysql_db_shell < migrate_14.0.2.sql
+					#ynh_config_add --template="migrate_14.0.2.sql" --destination="$install_dir/migrate_14.0.2.sql"
+					#ynh_mysql_db_shell < migrate_14.0.2.sql
 				else
 					ynh_script_progression "No migrations required since package > 14.0.2"
 				fi
 			fi
 		fi
+		ynh_script_progression "You shouldn't see this"
 	fi
-	ynh_script_progression "You shouldn't see this"
 
+	ynh_script_progression "Seeding demo into database"
 	ynh_mysql_db_shell < db/demo.sql
 
 	ynh_script_progression "Checking if a config panel migration is needed"
