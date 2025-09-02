@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source _common.sh
+
 source /usr/share/yunohost/helpers
 
 #=================================================
@@ -87,7 +87,7 @@ popd
 #=================================================
  ynh_script_progression "Installing composer dependencies..."
 
- ynh_composer_install
+ #REMOVEME? ynh_composer_install
 ynh_composer_exec install --no-dev
 
 # worckaround while https://github.com/chartjs/Chart.js/issues/11478 is not fixed
