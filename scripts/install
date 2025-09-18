@@ -22,8 +22,8 @@ ynh_hide_warnings mkdir "$install_dir/composer"
 
 pushd "$install_dir"
 	ynh_hide_warnings mv ./www_data/* .
-	ynh_mysql_db_shell < db/table.sql
-	ynh_mysql_db_shell < db/demo.sql
+	ynh_mysql_db_shell < script/db/table.sql
+	ynh_mysql_db_shell < script/db/demo.sql
 popd
 
  #=================================================
