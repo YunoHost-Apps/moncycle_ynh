@@ -1,75 +1,111 @@
--- Rename tables
-RENAME TABLE `compte` TO `account`,
-             `jetton` TO `token`,
-             `cle_valeur` TO `key_value`;
+CREATE TABLE `description` (
+  `no_description` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `no_compte` mediumint(8) unsigned DEFAULT NULL,
+  `name` varchar(256) NOT NULL,
+  `type` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `last_write_client_UTC` timestamp NULL DEFAULT NULL,
+  `last_write_db` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
+  PRIMARY KEY (`no_description`),
+  UNIQUE KEY `unique_user_account_and_name` (`no_compte`,`name`),
+  KEY `no_user_account` (`no_compte`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Drop foreign key constraints temporarily
-ALTER TABLE `observation` DROP FOREIGN KEY `observation_ibfk_1`;
-ALTER TABLE `token` DROP FOREIGN KEY `observation_ibfk_2`;
+ALTER TABLE `observation`
+CHANGE `dernier_modif` `last_write_db` timestamp NULL ON UPDATE CURRENT_TIMESTAMP AFTER `commentaire`;
 
--- Alter `account` table
-ALTER TABLE `account` 
-  CHANGE COLUMN `no_compte` `id_account` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  CHANGE COLUMN `nom` `name` varchar(255) COLLATE utf8mb4_bin NOT NULL,
-  CHANGE COLUMN `methode` `nfp_method` smallint(5) unsigned NOT NULL DEFAULT 1,
-  CHANGE COLUMN `motdepasse` `password` varchar(255) COLLATE utf8mb4_bin NOT NULL,
-  CHANGE COLUMN `totp_etat` `totp_status` tinyint(1) unsigned NOT NULL DEFAULT 0,
-  CHANGE COLUMN `nb_co_echoue` `failed_login` smallint(5) unsigned NOT NULL DEFAULT 0,
-  CHANGE COLUMN `donateur` `donor` tinyint(1) unsigned NOT NULL DEFAULT 0,
-  CHANGE COLUMN `recherche` `research` tinyint(1) unsigned NOT NULL DEFAULT 0,
-  CHANGE COLUMN `actif` `disabled` tinyint(1) unsigned NOT NULL DEFAULT 1,
-  CHANGE COLUMN `relance` `followup` tinyint(1) unsigned NOT NULL DEFAULT 1,
-  CHANGE COLUMN `derniere_co_date` `last_login_date` timestamp NULL DEFAULT NULL,
-  CHANGE COLUMN `inscription_date` `registration_date` timestamp NOT NULL DEFAULT current_timestamp(),
-  CHANGE COLUMN `mdp_change_date` `password_change_date` timestamp NULL DEFAULT NULL,
-  CHANGE COLUMN `decouvert` `how_discovered` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL;
+ALTER TABLE `observation`
+ADD `last_write_client_UTC` timestamp NULL AFTER `commentaire`;
 
--- Alter `observation` table
-ALTER TABLE `observation` 
-  CHANGE COLUMN `no_observation` `id_observation` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  CHANGE COLUMN `no_compte` `id_account` mediumint(8) unsigned NOT NULL,
-  CHANGE COLUMN `date_obs` `observation_date` date NOT NULL DEFAULT '0000-00-00',
-  CHANGE COLUMN `jenesaispas` `i_dont_know` tinyint(1) unsigned DEFAULT NULL,
-  CHANGE COLUMN `fleche_fc` `arrow_fc` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL,
-  CHANGE COLUMN `gommette` `stamp` varchar(3) COLLATE utf8mb4_bin NOT NULL,
-  CHANGE COLUMN `sensation` `feeling` varchar(256) COLLATE utf8mb4_bin DEFAULT NULL,
-  CHANGE COLUMN `heure_temp` `temperature_time` time DEFAULT NULL,
-  CHANGE COLUMN `jour_sommet` `peak` tinyint(1) unsigned DEFAULT NULL,
-  CHANGE COLUMN `compteur` `counter` tinyint(1) unsigned DEFAULT NULL,
-  CHANGE COLUMN `union_sex` `sexual_union` tinyint(1) unsigned DEFAULT NULL,
-  CHANGE COLUMN `premier_jour` `cycle_first_day` tinyint(1) unsigned DEFAULT NULL,
-  CHANGE COLUMN `grossesse` `pregnancy` tinyint(1) unsigned DEFAULT NULL,
-  CHANGE COLUMN `commentaire` `comment` varchar(256) COLLATE utf8mb4_bin DEFAULT NULL,
-  CHANGE COLUMN `dernier_modif` `last_modified_date` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  DROP INDEX `unique_compte_and_date`,
-  ADD UNIQUE INDEX `unique_account_and_date` (`id_account`, `observation_date`);
+ALTER TABLE `compte`
+CHANGE `recherche` `research` tinyint(1) unsigned NOT NULL DEFAULT '0' AFTER `donateur`;
+ALTER TABLE `compte`
+CHANGE `nom` `name` varchar(255) COLLATE 'utf8mb4_bin' NOT NULL AFTER `no_compte`;
+ALTER TABLE `jetton`
+CHANGE `nom` `name` varchar(256) COLLATE 'utf8mb4_bin' NOT NULL AFTER `no_compte`;
+ALTER TABLE `compte`
+CHANGE `donateur` `sponsor` tinyint(1) unsigned NOT NULL DEFAULT '0' AFTER `timeline_asc`;
+ALTER TABLE `observation`
+CHANGE `premier_jour` `cycle_1st_day` tinyint(1) unsigned NULL AFTER `union_sex`;
+ALTER TABLE `observation`
+CHANGE `note_fc` `fc_score` varchar(32) COLLATE 'utf8mb4_bin' NULL AFTER `jenesaispas`;
+ALTER TABLE `observation`
+CHANGE `fleche_fc` `fc_arrow` varchar(1) COLLATE 'utf8mb4_bin' NULL AFTER `fc_score`;
+ALTER TABLE `observation`
+CHANGE `heure_temp` `time_temp_taken` time NULL AFTER `temperature`;
+ALTER TABLE `observation`
+CHANGE `jenesaispas` `day_not_observed` tinyint(1) unsigned NULL AFTER `date_obs`;
+ALTER TABLE `observation`
+CHANGE `jour_sommet` `is_peak` tinyint(1) unsigned NULL AFTER `time_temp_taken`;
+ALTER TABLE `observation`
+CHANGE `compteur` `counter_start` tinyint(1) unsigned NULL AFTER `is_peak`;
+ALTER TABLE `observation`
+CHANGE `grossesse` `pregnancy` tinyint(1) unsigned NULL AFTER `cycle_1st_day`;
+ALTER TABLE `observation`
+CHANGE `commentaire` `comment` varchar(256) COLLATE 'utf8mb4_bin' NULL AFTER `pregnancy`;
 
--- Add foreign key constraints back
-ALTER TABLE `observation` ADD CONSTRAINT `observation_ibfk_1` FOREIGN KEY (`id_account`) REFERENCES `account` (`id_account`) ON DELETE CASCADE;
 
--- Alter `token` table
-ALTER TABLE `token` 
-  CHANGE COLUMN `no_jetton` `id_token` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  CHANGE COLUMN `no_compte` `id_account` mediumint(8) unsigned DEFAULT NULL,
-  CHANGE COLUMN `expire` `expired` tinyint(1) unsigned NOT NULL DEFAULT 0,
-  CHANGE COLUMN `pays` `country` varchar(2) COLLATE utf8mb4_bin DEFAULT NULL,
-  CHANGE COLUMN `date_creation` `creation_date` timestamp NOT NULL DEFAULT current_timestamp(),
-  CHANGE COLUMN `date_use` `use_date` timestamp NULL DEFAULT NULL,
-  CHANGE COLUMN `jetton_str` `token_str` varchar(512) COLLATE utf8mb4_bin NOT NULL,
-  DROP INDEX `jetton_str`,
-  ADD UNIQUE INDEX `token_str` (`token_str`);
+ALTER TABLE `compte`
+CHANGE `motdepasse` `password` varchar(255) COLLATE 'utf8mb4_bin' NOT NULL AFTER `email2`;
+ALTER TABLE `compte`
+CHANGE `totp_etat` `totp_state` tinyint(1) unsigned DEFAULT NULL AFTER `password`;
+ALTER TABLE `compte`
+CHANGE `nb_co_echoue` `nb_connection_attempts` smallint(5) unsigned NOT NULL DEFAULT '0' AFTER `totp_secret`;
+ALTER TABLE `compte`
+CHANGE `actif` `user_enabled` tinyint(1) unsigned NOT NULL DEFAULT '1' AFTER `research`;
+ALTER TABLE `compte`
+CHANGE `derniere_co_date` `last_auth_date` timestamp NULL AFTER `relance`;
+ALTER TABLE `compte`
+CHANGE `mdp_change_date` `last_password_change` timestamp NULL AFTER `inscription_date`;
+ALTER TABLE `compte`
+CHANGE `relance` `is_inactive` tinyint(1) unsigned NOT NULL DEFAULT '0' AFTER `user_enabled`;
+ALTER TABLE `compte`
+CHANGE `methode` `nfp_method` smallint(5) unsigned NOT NULL DEFAULT '1' AFTER `name`;
 
--- Add foreign key constraints back
-ALTER TABLE `token` ADD CONSTRAINT `observation_ibfk_2` FOREIGN KEY (`id_account`) REFERENCES `account` (`id_account`) ON DELETE CASCADE;
 
--- Alter `key_value` table
-ALTER TABLE `key_value`
-  CHANGE COLUMN `cle` `key` varchar(255) NOT NULL,
-  CHANGE COLUMN `valeur` `value` bigint(20) unsigned DEFAULT NULL;
+ALTER TABLE `jetton`
+CHANGE `no_jetton` `no_auth_token` mediumint(8) unsigned NOT NULL AUTO_INCREMENT FIRST,
+CHANGE `jetton_str` `auth_token_str` varchar(512) COLLATE 'utf8mb4_bin' NOT NULL AFTER `date_use`,
+RENAME TO `auth_token`;
+ALTER TABLE `auth_token`
+CHANGE `pays` `contry_code` varchar(2) COLLATE 'utf8mb4_bin' NULL AFTER `expire`;
 
--- Insert initial data into `key_value` table
-INSERT INTO `key_value` (`key`, `value`) VALUES
-('monthly_public_visits', 0),
-('weekly_public_visits', 0),
-('daily_public_visits', 0)
-ON DUPLICATE KEY UPDATE `value` = VALUES(`value`);
+ALTER TABLE `compte`
+CHANGE `no_compte` `no_user_account` mediumint(8) unsigned NOT NULL AUTO_INCREMENT FIRST,
+RENAME TO `user_account`;
+
+ALTER TABLE auth_token
+DROP FOREIGN KEY `observation_ibfk_2`,
+CHANGE `no_compte` `no_user_account` mediumint(8) unsigned NULL AFTER `no_auth_token`,
+ADD CONSTRAINT `fk_auth_token_no_user_account` FOREIGN KEY (`no_user_account`) REFERENCES `user_account` (`no_user_account`) ON DELETE CASCADE;
+
+ALTER TABLE `description`
+CHANGE `no_compte` `no_user_account` mediumint(8) unsigned NULL AFTER `no_description`,
+ADD CONSTRAINT `fk_description_no_user_account` FOREIGN KEY (`no_user_account`) REFERENCES `user_account` (`no_user_account`) ON DELETE CASCADE;
+
+ALTER TABLE `observation`
+DROP FOREIGN KEY `observation_ibfk_1`,
+CHANGE `no_compte` `no_user_account` mediumint(8) unsigned NULL AFTER `no_observation`,
+ADD CONSTRAINT `fk_no_observation_no_user_account` FOREIGN KEY (`no_user_account`) REFERENCES `user_account` (`no_user_account`) ON DELETE CASCADE;
+
+ALTER TABLE `observation`
+CHANGE `no_observation` `no_day` mediumint(8) unsigned NOT NULL AUTO_INCREMENT FIRST,
+RENAME TO `day_timeline`;
+
+CREATE TABLE `link_day_timeline_description` (
+  `no_day` mediumint(8) unsigned NOT NULL,
+  `no_description` mediumint(8) unsigned NOT NULL,
+  `last_write_db` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+  KEY `no_day` (`no_day`),
+  KEY `no_description` (`no_description`),
+  UNIQUE KEY `unique_day_timeline_and_description` (`no_day`,`no_description`),
+  CONSTRAINT `day_timeline_ibfk_4` FOREIGN KEY (`no_day`) REFERENCES `day_timeline` (`no_day`) ON DELETE CASCADE,
+  CONSTRAINT `day_timeline_ibfk_5` FOREIGN KEY (`no_description`) REFERENCES `description` (`no_description`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+ALTER TABLE `cle_valeur`
+CHANGE `cle` `key` varchar(255) COLLATE 'utf8mb4_bin' NOT NULL FIRST,
+CHANGE `valeur` `value` bigint(20) unsigned NULL AFTER `key`,
+RENAME TO `key_value`;
+
+ALTER TABLE `user_account` CHANGE `decouvert` `register_comment` VARCHAR(255)  CHARACTER SET utf8mb4  BINARY  NULL  DEFAULT NULL;
+ALTER TABLE `day_timeline` CHANGE `gommette` `stamp` VARCHAR(3)  CHARACTER SET utf8mb4  BINARY  NOT NULL;

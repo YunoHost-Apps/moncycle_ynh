@@ -35,8 +35,9 @@ pushd "$install_dir"
 		ynh_mysql_db_shell < migrate_9.0.3.sql
 		ynh_config_add --template="migrate_13.0.6.sql" --destination="$install_dir/migrate_13.0.6.sql"
 		ynh_mysql_db_shell < migrate_13.0.6.sql
-		#ynh_config_add --template="migrate_14.0.2.sql" --destination="$install_dir/migrate_14.0.2.sql"
-		#ynh_mysql_db_shell < migrate_14.0.2.sql
+		ynh_config_add --template="migrate_14.0.2.sql" --destination="$install_dir/migrate_14.0.2.sql"
+		ynh_mysql_db_shell < migrate_14.0.2.sql
+		ynh_exec_as_app /usr/bin/php8.3 --define apc.enable_cli=1 "$install_dir/script/migration/v14_to_v15.php"
 	else
 		if ynh_app_upgrading_from_version_before_or_equal_to 7.0~ynh6
 		then
@@ -47,8 +48,9 @@ pushd "$install_dir"
 			ynh_mysql_db_shell < migrate_9.0.3.sql
 			ynh_config_add --template="migrate_13.0.6.sql" --destination="$install_dir/migrate_13.0.6.sql"
 			ynh_mysql_db_shell < migrate_13.0.6.sql
-			#ynh_config_add --template="migrate_14.0.2.sql" --destination="$install_dir/migrate_14.0.2.sql"
-			#ynh_mysql_db_shell < migrate_14.0.2.sql
+			ynh_config_add --template="migrate_14.0.2.sql" --destination="$install_dir/migrate_14.0.2.sql"
+			ynh_mysql_db_shell < migrate_14.0.2.sql
+			ynh_exec_as_app /usr/bin/php8.3 --define apc.enable_cli=1 "$install_dir/script/migration/v14_to_v15.php"
 		else
 			if ynh_app_upgrading_from_version_before_or_equal_to 9.0~ynh3
 			then
@@ -57,18 +59,27 @@ pushd "$install_dir"
 				ynh_mysql_db_shell < migrate_9.0.3.sql
 				ynh_config_add --template="migrate_13.0.6.sql" --destination="$install_dir/migrate_13.0.6.sql"
 				ynh_mysql_db_shell < migrate_13.0.6.sql
-				#ynh_config_add --template="migrate_14.0.2.sql" --destination="$install_dir/migrate_14.0.2.sql"
-				#ynh_mysql_db_shell < migrate_14.0.2.sql
+				ynh_config_add --template="migrate_14.0.2.sql" --destination="$install_dir/migrate_14.0.2.sql"
+				ynh_mysql_db_shell < migrate_14.0.2.sql
+				ynh_exec_as_app /usr/bin/php8.3 --define apc.enable_cli=1 "$install_dir/script/migration/v14_to_v15.php"
 			else
 				if ynh_app_upgrading_from_version_before_or_equal_to 13~ynh6
 				then
 					ynh_script_progression "13.0.6 to 14.0.2 database migration required, migrating"
 					ynh_config_add --template="migrate_13.0.6.sql" --destination="$install_dir/migrate_13.0.6.sql"
 					ynh_mysql_db_shell < migrate_13.0.6.sql
-					#ynh_config_add --template="migrate_14.0.2.sql" --destination="$install_dir/migrate_14.0.2.sql"
-					#ynh_mysql_db_shell < migrate_14.0.2.sql
+					ynh_config_add --template="migrate_14.0.2.sql" --destination="$install_dir/migrate_14.0.2.sql"
+					ynh_mysql_db_shell < migrate_14.0.2.sql
+					ynh_exec_as_app /usr/bin/php8.3 --define apc.enable_cli=1 "$install_dir/script/migration/v14_to_v15.php"
 				else
-					ynh_script_progression "No migrations required since package > 14.0.2"
+					if ynh_app_upgrading_from_version_before_or_equal_to 14~ynh2
+					then
+						ynh_config_add --template="migrate_14.0.2.sql" --destination="$install_dir/migrate_14.0.2.sql"
+						ynh_mysql_db_shell < migrate_14.0.2.sql
+						ynh_exec_as_app /usr/bin/php8.3 --define apc.enable_cli=1 "$install_dir/script/migration/v14_to_v15.php"
+					else
+						ynh_script_progression "No migrations required since package > 14.2"
+					fi
 				fi
 			fi
 		fi
