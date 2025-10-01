@@ -97,7 +97,7 @@ pushd "$install_dir"
 	fi
 
 	ynh_script_progression "Seeding demo into database"
-	ynh_mysql_db_shell < db/demo.sql
+	ynh_mysql_db_shell < script/db/demo.sql
 
 	ynh_script_progression "Checking if a config panel migration is needed"
 	if ynh_app_upgrading_from_version_before_or_equal_to 10.0~ynh1
