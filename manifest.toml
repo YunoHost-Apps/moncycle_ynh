@@ -38,7 +38,7 @@ ram.runtime = "50M"
 [resources]
         [resources.sources.main]
         url = "https://github.com/jean-io/moncycle.app/archive/2c14d712156c803244c10d14b90206721e678818.zip"
-        sha256 = "b309d2e25428c3f5a33a93504838d83b8a98b1d8152903cdf340a2f83a777f25"
+        sha256 = "f4187ca4575e0d4ec8881239c5a4cc1168125f5ecc5bb9bac89f29d0c3ba1696"
         autoupdate.strategy = "latest_github_release"
 
     [resources.system_user]
