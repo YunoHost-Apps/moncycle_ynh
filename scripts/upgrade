@@ -87,7 +87,6 @@ popd
 #=================================================
  ynh_script_progression "Installing composer dependencies..."
 
- #REMOVEME? ynh_composer_install
 ynh_composer_exec install --no-dev
 
 # worckaround while https://github.com/chartjs/Chart.js/issues/11478 is not fixed
