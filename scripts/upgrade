@@ -23,8 +23,6 @@ pushd "$install_dir"
 	ynh_hide_warnings mv ./www_data/* .
 	ynh_hide_warnings mv /tmp/config.php .
 
-	ynh_mysql_db_shell < db/demo.sql
-
 	ynh_script_progression "Checking if a database migration is needed"
 	if ynh_app_upgrading_from_version_before_or_equal_to 7.0~ynh5
 	then
@@ -37,6 +35,8 @@ pushd "$install_dir"
 		ynh_mysql_db_shell < migrate_9.0.3.sql
 		ynh_config_add --template="migrate_13.0.6.sql" --destination="$install_dir/migrate_13.0.6.sql"
 		ynh_mysql_db_shell < migrate_13.0.6.sql
+		ynh_config_add --template="migrate_14.0.2.sql" --destination="$install_dir/migrate_14.0.2.sql"
+		ynh_mysql_db_shell < migrate_14.0.2.sql
 	else
 		if ynh_app_upgrading_from_version_before_or_equal_to 7.0~ynh6
 		then
@@ -47,6 +47,8 @@ pushd "$install_dir"
 			ynh_mysql_db_shell < migrate_9.0.3.sql
 			ynh_config_add --template="migrate_13.0.6.sql" --destination="$install_dir/migrate_13.0.6.sql"
 			ynh_mysql_db_shell < migrate_13.0.6.sql
+			ynh_config_add --template="migrate_14.0.2.sql" --destination="$install_dir/migrate_14.0.2.sql"
+			ynh_mysql_db_shell < migrate_14.0.2.sql
 		else
 			if ynh_app_upgrading_from_version_before_or_equal_to 9.0~ynh3
 			then
@@ -54,18 +56,24 @@ pushd "$install_dir"
 				ynh_mysql_db_shell < migrate_9.0.3.sql
 				ynh_config_add --template="migrate_13.0.6.sql" --destination="$install_dir/migrate_13.0.6.sql"
 				ynh_mysql_db_shell < migrate_13.0.6.sql
+				ynh_config_add --template="migrate_14.0.2.sql" --destination="$install_dir/migrate_14.0.2.sql"
+				ynh_mysql_db_shell < migrate_14.0.2.sql
 			else
 				if ynh_app_upgrading_from_version_before_or_equal_to 13~ynh6
 				then
 					ynh_config_add --template="migrate_13.0.6.sql" --destination="$install_dir/migrate_13.0.6.sql"
 					ynh_mysql_db_shell < migrate_13.0.6.sql
+					ynh_config_add --template="migrate_14.0.2.sql" --destination="$install_dir/migrate_14.0.2.sql"
+					ynh_mysql_db_shell < migrate_14.0.2.sql
 				else
-					ynh_script_progression "No migrations required since package > 13.0.6"
+					ynh_script_progression "No migrations required since package > 14.0.2"
 				fi
 			fi
 		fi
 	fi
 	ynh_script_progression "You shouldn't see this"
+
+	ynh_mysql_db_shell < db/demo.sql
 
 	ynh_script_progression "Checking if a config panel migration is needed"
 	if ynh_app_upgrading_from_version_before_or_equal_to 10.0~ynh1
@@ -85,7 +93,7 @@ popd
 #=================================================
 # INSTALL COMPOSER DEPENDENCIES
 #=================================================
- ynh_script_progression "Installing composer dependencies..."
+ynh_script_progression "Installing composer dependencies..."
 
 ynh_composer_exec install --no-dev
 
