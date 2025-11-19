@@ -1,6 +1,5 @@
 #!/bin/bash
 
-source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
@@ -95,7 +94,6 @@ popd
 #=================================================
 ynh_script_progression "Installing composer dependencies..."
 
-ynh_composer_install
 ynh_composer_exec update
 ynh_composer_exec install --no-dev
 
