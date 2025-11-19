@@ -5,7 +5,7 @@ name = "Moncycle"
 description.en = "Menstrual cycle follow-up for natural family planning"
 description.fr = "Suivi de cycle pour les méthodes naturelles de régulation de naissance"
 
-version = "14~ynh2"
+version = "2025.11.19~ynh1"
 
 maintainers = ["Raoul de Limezy"]
 
@@ -16,7 +16,7 @@ demo = "https://tableau.moncycle.app/connexion.php?email1=demo.bill@moncycle.app
 code = "https://github.com/jean-io/moncycle.app"
 
 [integration]
-yunohost = ">= 12.0.9"
+yunohost = ">= 12.1.17"
 helpers_version = "2.1"
 architectures = "all"
 multi_instance = true
@@ -37,9 +37,9 @@ ram.runtime = "50M"
 
 [resources]
         [resources.sources.main]
-        url = "https://github.com/jean-io/moncycle.app/archive/2c14d712156c803244c10d14b90206721e678818.zip"
-        sha256 = "b309d2e25428c3f5a33a93504838d83b8a98b1d8152903cdf340a2f83a777f25"
-        autoupdate.strategy = "latest_github_release"
+        url = "https://github.com/jean-io/moncycle.app/archive/3c6a5a041c89119028ff4249941ad1329356e66a.zip"
+        sha256 = "76b8d431241bb98351ee15ba445021a994e91b28598bfddb8e8333706474250d"
+        autoupdate.strategy = "latest_github_commit"
 
     [resources.system_user]
 
@@ -54,3 +54,6 @@ ram.runtime = "50M"
 
     [resources.database]
     type = "mysql"
+
+    [resources.composer]
+    version = "2.8.12"
