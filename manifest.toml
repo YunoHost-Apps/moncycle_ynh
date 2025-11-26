@@ -13,7 +13,7 @@ maintainers = ["Raoul de Limezy"]
 license = "CC-BY-NC-SA-4.0"
 website = "https://moncycle.app"
 demo = "https://tableau.moncycle.app/connexion.php?email1=demo.bill@moncycle.app&mdp=demo"
-code = "https://github.com/jean-io/moncycle.app"
+code = "https://github.com/moncycle-app/backend-api-web-app"
 
 [integration]
 yunohost = ">= 12.0.9"
