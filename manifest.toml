@@ -5,7 +5,7 @@ name = "Moncycle"
 description.en = "Menstrual cycle follow-up for natural family planning"
 description.fr = "Suivi de cycle pour les méthodes naturelles de régulation de naissance"
 
-version = "2025.11.19~ynh1"
+version = "2025.11.24~ynh1"
 
 maintainers = ["Raoul de Limezy"]
 
@@ -37,8 +37,8 @@ ram.runtime = "50M"
 
 [resources]
         [resources.sources.main]
-        url = "https://github.com/jean-io/moncycle.app/archive/3c6a5a041c89119028ff4249941ad1329356e66a.zip"
-        sha256 = "76b8d431241bb98351ee15ba445021a994e91b28598bfddb8e8333706474250d"
+        url = "https://github.com/jean-io/moncycle.app/archive/43af104e0965139f50b819bd0018d6b7cf92c72d.tar.gz"
+        sha256 = "c3a03a9cf26f216e437fd2c75af9e1198549f759515fe2b3628ffd981f0dc9be"
         autoupdate.strategy = "latest_github_commit"
 
     [resources.system_user]
