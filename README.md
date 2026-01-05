@@ -12,7 +12,6 @@ Menstrual cycle follow-up for natural family planning
 
 [![🌐 Official app website](https://img.shields.io/badge/Official_app_website-darkgreen?style=for-the-badge)](https://moncycle.app)
 [![App Demo](https://img.shields.io/badge/App_Demo-blue?style=for-the-badge)](https://tableau.moncycle.app/connexion.php?email1=demo.bill@moncycle.app&mdp=demo)
-
 [![Version: 2025.11.19~ynh1](https://img.shields.io/badge/Version-2025.11.19~ynh1-rgb(18,138,11)?style=for-the-badge)](https://ci-apps.yunohost.org/ci/apps/moncycle/)
 
 <div align="center">
@@ -28,7 +27,7 @@ Menstrual cycle follow-up for natural family planning
 
 [![Automatic tests level](https://apps.yunohost.org/badge/cilevel/moncycle)](https://ci-apps.yunohost.org/ci/apps/moncycle/)
 
-🛠️ Upstream Moncycle repository: <https://github.com/jean-io/moncycle.app>
+🛠️ Upstream Moncycle repository: <https://github.com/moncycle-app/backend-api-web-app>
 
 Pull request are welcome and should target the [`testing` branch](https://github.com/YunoHost-Apps/moncycle_ynh/tree/testing).
 
