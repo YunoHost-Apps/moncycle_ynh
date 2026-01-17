@@ -16,7 +16,7 @@ demo = "https://tableau.moncycle.app/connexion.php?email1=demo.bill@moncycle.app
 code = "https://github.com/moncycle-app/backend-api-web-app"
 
 [integration]
-yunohost = ">= 12.1.17"
+yunohost = ">= 12.1.38"
 helpers_version = "2.1"
 architectures = "all"
 multi_instance = true
@@ -56,4 +56,4 @@ ram.runtime = "50M"
     type = "mysql"
 
     [resources.composer]
-    version = "2.8.12"
+    version = "2.9.3"
