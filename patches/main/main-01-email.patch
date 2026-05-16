@@ -1,0 +1,20 @@
+diff --git a/www_data/lib/mail.php b/www_data/lib/mail.php
+index 9a6c010..ddd2ce9 100644
+--- a/www_data/lib/mail.php
++++ b/www_data/lib/mail.php
+@@ -15,11 +15,11 @@ function mail_init(){
+ 
+ 	$mail->isSMTP();
+ 	$mail->Host       = SMTP_HOST;
+-	$mail->SMTPAuth   = true;
++	$mail->SMTPAuth   = false;
+ 	$mail->Username   = SMTP_MAIL;
+-	$mail->Password   = SMTP_PASSWORD;
+-	$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+-	$mail->Port       = SMTP_PORT;
++	$mail->Password   = '';
++	$mail->SMTPSecure = false;
++	$mail->Port       = 25;
+ 	$mail->CharSet    = 'UTF-8';
+ 
+ 	$mail->setFrom(SMTP_MAIL, 'MONCYCLE.APP');
