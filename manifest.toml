@@ -15,6 +15,11 @@ website = "https://moncycle.app"
 demo = "https://tableau.moncycle.app/connexion.php?email1=demo.bill@moncycle.app&mdp=demo"
 code = "https://github.com/moncycle-app/backend-api-web-app"
 
+[antifeatures]
+# This flag has been collectively discussed and agreed upon, it shall not be removed without collective review
+arbitrary-limitations.en = "This app promotes and links to methods and conservative organizations, some of which received funding from a known far-right reactionary person. These methods' efficiencies have not been scientifically demonstrated. Be cautious when using it, be wary of the political agenda of the persons promoting them."
+arbitrary-limitations.fr = "Cette app promeut et fait référence à des méthodes et des organisations conservatives, dont certaines ont reçu des financements d'une personne reconnue réactionnaire d'extrême droite. Les efficacités de ces méthodes n'ont pas été reconnues scientifiquement. Faites preuve de prudence en utilisant l'app, faites attention à l'agenda politique des personnes promouvant ces méthodes."
+
 [integration]
 yunohost = ">= 12.0.9"
 helpers_version = "2.1"
